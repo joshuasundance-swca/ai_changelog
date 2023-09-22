@@ -2,7 +2,7 @@ from typing import List
 
 from langchain.pydantic_v1 import BaseModel, Field
 
-from ai_changelog.string_templates import markdown_template
+from string_templates import markdown_template
 
 
 class Commit(BaseModel):
