@@ -1,0 +1,45 @@
+name: Update AI Changelog
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
+
+jobs:
+  update-changelog:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.11
+
+    - name: Install dependencies
+      run: |
+        pip install --user --no-cache-dir pydantic==2.3.0 langchain==0.0.298
+
+    - name: Execute script and prepend to AI_CHANGELOG.md
+      env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        LANGCHAIN_API_KEY: ${{ secrets.LANGCHAIN_API_KEY }}
+        LANGCHAIN_PROJECT: ai-changelog
+        LANGCHAIN_ENDPOINT: https://api.smith.langchain.com
+        LANGCHAIN_TRACING_V2: true
+      run: |
+        OUTPUT=$(python ai_changelog.py)
+        git checkout AI_CHANGELOG.md  # To rollback the previous additions
+        echo "$OUTPUT" | cat - AI_CHANGELOG.md > temp.md && mv temp.md AI_CHANGELOG.md
+
+    - name: Commit changes
+      uses: stefanzweifel/git-auto-commit-action@v4
