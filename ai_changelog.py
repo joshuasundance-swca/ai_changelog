@@ -2,16 +2,12 @@ import os
 import subprocess
 from typing import Optional
 
-from dotenv import load_dotenv
 from langchain.chains.openai_functions import (
     create_structured_output_chain,
 )
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 from pydantic import BaseModel, Field
-
-# load environment variables from .env file
-load_dotenv()
 
 
 sys_msg = """
