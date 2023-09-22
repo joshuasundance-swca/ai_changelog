@@ -1,13 +1,13 @@
 import os
 import subprocess
-from typing import Optional
+from typing import Optional, List
 
 from langchain.chains.openai_functions import (
     create_structured_output_chain,
 )
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
-from pydantic import BaseModel, Field
+from langchain.pydantic_v1 import BaseModel, Field
 
 
 sys_msg = """
@@ -39,7 +39,7 @@ class Commit(BaseModel):
 
 class CommitDescription(BaseModel):
     short_description: str = Field(..., description="A technical and concise description of changes implemented in the commit")
-    long_description: list[str] = Field(..., description="Markdown bullet-point formatted list of changes implemented in the commit")
+    long_description: List[str] = Field(..., description="Markdown bullet-point formatted list of changes implemented in the commit")
 
 
 class CommitInfo(Commit, CommitDescription):
