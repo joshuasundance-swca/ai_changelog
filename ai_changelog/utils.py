@@ -8,8 +8,8 @@ from langchain.chains.openai_functions import (
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 
-from ai_changelog.pydantic_models import CommitDescription, CommitInfo, Commit
-from ai_changelog.string_templates import sys_msg, hum_msg
+from pydantic_models import CommitDescription, CommitInfo, Commit
+from string_templates import sys_msg, hum_msg
 
 
 def get_commits(

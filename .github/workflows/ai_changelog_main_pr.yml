@@ -22,13 +22,12 @@ jobs:
         fetch-depth: 0
 
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: 3.11
-
-    - name: Install dependencies
+        cache: pip
       run: |
-        pip install --user --no-cache-dir pydantic==2.3.0 langchain==0.0.298 openai==0.28.0
+        pip install --user requirements.txt
 
     - name: Execute script and prepend to AI_CHANGELOG.md
       env:
