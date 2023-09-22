@@ -26,6 +26,8 @@ jobs:
       with:
         python-version: 3.11
         cache: pip
+
+    - name: Install dependencies
       run: |
         pip install --user requirements.txt
 
