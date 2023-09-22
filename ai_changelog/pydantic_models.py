@@ -1,8 +1,10 @@
-from typing import List
+from typing import List, Optional
 
 from langchain.pydantic_v1 import BaseModel, Field
 
 from string_templates import markdown_template
+
+import os
 
 
 class Commit(BaseModel):
@@ -22,7 +24,12 @@ class CommitDescription(BaseModel):
 
 
 class CommitInfo(Commit, CommitDescription):
-    def markdown(self):
+    def markdown(self, repo_name: Optional[str] = None) -> str:
+        _repo_name = repo_name or os.environ["REPO_NAME"]
+        if _repo_name is None:
+            raise ValueError(
+                "repo_name not given and REPO_NAME not found in environment variables",
+            )
         bullet_points = "\n".join(
             [f"- {line.strip('*- ')}" for line in self.long_description],
         )
@@ -30,4 +37,5 @@ class CommitInfo(Commit, CommitDescription):
             short_description=self.short_description,
             commit_hash=self.commit_hash,
             bullet_points=bullet_points,
+            repo_name=_repo_name,
         )
