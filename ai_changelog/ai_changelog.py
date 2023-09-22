@@ -50,9 +50,7 @@ def get_commits(
     ]
 
 
-if __name__ == "__main__":
-    commits = get_commits()
-
+def get_descriptions(commits: list[Commit]) -> list[CommitInfo]:
     llm = ChatOpenAI(model="gpt-4", temperature=0.5)
 
     prompt = ChatPromptTemplate.from_messages(
@@ -69,9 +67,17 @@ if __name__ == "__main__":
 
     outputs: list[CommitDescription] = [result["function"] for result in results]
 
-    infos = [
+    return [
         CommitInfo(**commit.dict(), **commit_description.dict())
         for commit, commit_description in zip(commits, outputs)
     ]
 
-    print("\n".join(info.markdown() for info in infos))
+
+def infos_to_str(infos: list[CommitInfo]) -> str:
+    return "\n\n".join([info.markdown() for info in infos])
+
+
+if __name__ == "__main__":
+    commits = get_commits()
+    infos = get_descriptions(commits)
+    print(infos_to_str(infos))
