@@ -9,6 +9,7 @@ import os
 
 class Commit(BaseModel):
     commit_hash: str = Field(..., description="The commit hash")
+    date_time_str: str = Field(..., "Formatted date and time str")
     diff: str = Field(..., description="The diff for the commit")
 
 
@@ -38,4 +39,5 @@ class CommitInfo(Commit, CommitDescription):
             commit_hash=self.commit_hash,
             bullet_points=bullet_points,
             repo_name=_repo_name,
+            date_time_str=self.date_time_str,
         )
