@@ -1,6 +1,41 @@
 # AI CHANGELOG
 
 
+## [Fixed issue with repeating commit summaries in changelog](https://github.com/joshuasundance-swca/ai_changelog/commit/b84998fbdf949bc0daa9ac0d4f724b4406f67851)
+- This commit addresses the issue of repeating commit summaries in the changelog. Previously, the script would not properly rollback the previous additions to the AI_CHANGELOG.md file, leading to an accumulation of repeated summaries.
+- The fix involves changing the 'git checkout' command to specifically checkout the 'AI_CHANGELOG.md' file from the 'origin/main' branch, effectively discarding changes made in the working tree.
+
+
+
+## [Updated AI Changelog](https://github.com/joshuasundance-swca/ai_changelog/commit/529609cb0748a803c601dee4408815a00cac8bfc)
+- The commit 529609cb0748a803c601dee4408815a00cac8bfc includes several updates to the AI Changelog:
+- 1) Fixed a typo in the markdown_template URL in the file ai_changelog/string_templates.py.
+- 2) Introduced a hyperlink to the commit in the markdown output by modifying the markdown template in 'string_templates.py' and updating the 'markdown' method in the 'CommitInfo' class of 'pydantic_models.py'.
+- 3) Added the 'REPO_NAME' environment variable in '.github/workflows/ai_changelog_main_pr.yml' to store the repository name.
+- 4) Included the functionality to create hyperlinks in markdown by modifying the markdown template in the 'string_templates.py' file and adding an optional 'repo_name' parameter to the 'markdown' method in the 'CommitInfo' class.
+
+
+
+## [Fixed typo in markdown_template string](https://github.com/joshuasundance-swca/ai_changelog/commit/ddd9ce75383893fee14132a284eec573c46a002c)
+- The commit ddd9ce75383893fee14132a284eec573c46a002c by Joshua Sundance Bailey on Fri Sep 22 15:05:12 2023 is a minor fix for a typo in the 'markdown_template' string in the ai_changelog/string_templates.py file.
+- The change involves correcting the GitHub URL format in the markdown template. The word 'commits' has been changed to 'commit' in the hyperlink format.
+
+
+
+## [Added hyperlink to commit in markdown](https://github.com/joshuasundance-swca/ai_changelog/commit/eb037d5ab4211fcfb8db3a96c96dbd4359fac967)
+- The commit '7e7e956c59fb42752f6f607b28427669e30c24f5' introduces a hyperlink to the commit in the markdown output. This was achieved by modifying the markdown template in 'string_templates.py' to include the repository name and commit hash in a GitHub URL format.
+- To accommodate this change, the 'markdown' method in 'CommitInfo' class of 'pydantic_models.py' was updated to accept an optional 'repo_name' parameter. If 'repo_name' is not provided, the method attempts to fetch it from the environment variables.
+- A new environment variable 'REPO_NAME' is added in '.github/workflows/ai_changelog_main_pr.yml' to store the repository name.
+
+
+
+## [Added hyperlink functionality to markdown](https://github.com/joshuasundance-swca/ai_changelog/commit/7e7e956c59fb42752f6f607b28427669e30c24f5)
+- The commit introduces the functionality to create hyperlinks in markdown. Changes were made to the 'ai_changelog_main_pr.yml', 'pydantic_models.py', and 'string_templates.py' files.
+- In the 'ai_changelog_main_pr.yml', the REPO_NAME was added as an environment variable.
+- In 'pydantic_models.py', the 'markdown' method was updated to include the 'repo_name' parameter, which defaults to the REPO_NAME environment variable if not provided. If the 'repo_name' is not provided and the REPO_NAME environment variable is not set, a ValueError is raised.
+- In 'string_templates.py', the markdown template was modified to include a hyperlink to the commit in the short description.
+
+
 ## Added .gitignore file
 7389ceff6fc1a2e81146f0215d83b58419e9cbdd
 ----------------
