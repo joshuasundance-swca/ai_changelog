@@ -1,6 +1,12 @@
 # AI CHANGELOG
 
 
+## Added .gitignore file
+7389ceff6fc1a2e81146f0215d83b58419e9cbdd
+----------------
+- This commit introduces a .gitignore file to the project. The .gitignore file specifies intentionally untracked files that Git should ignore. This includes various Python-related files and directories, such as .pyc files, __pycache__ directories, virtual environments (venv), and others. This helps to keep the repository clean from unnecessary files, especially those that are generated during code execution or by the development environment.
+
+
 ## Fixed pip install command in GitHub Actions workflow
 3ac4b562ceb2b11b1edcb9d196c7086365274608
 ----------------
