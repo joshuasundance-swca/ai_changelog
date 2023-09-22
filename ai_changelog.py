@@ -64,7 +64,7 @@ def get_commits(
     subprocess.check_call(["cd", repo_path], shell=True)
     # Get the list of commit hashes between base_ref and head_ref
     hashes: list[str] = (
-        subprocess.check_output(["git", "rev-list", f"{base_ref}..{head_ref}"])
+        subprocess.check_output(["git", "rev-list", "--no-merges", f"{base_ref}..{head_ref}"])
         .decode()
         .splitlines()
     )
