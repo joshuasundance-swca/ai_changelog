@@ -12,6 +12,11 @@ from pydantic_models import CommitDescription, CommitInfo, Commit
 from string_templates import sys_msg, hum_msg
 
 
+def get_timestamp(commit_hash: str, format: str = "%cD") -> str:
+    cmd = ["git", "show", "-s", f"--format={format}", commit_hash]
+    return subprocess.check_output(cmd).decode().strip()
+
+
 def get_commits(
     repo_path: Optional[str] = None,
     base_ref: str = "origin/main",
@@ -31,13 +36,16 @@ def get_commits(
         .splitlines()
     )
     # Get the diff for each commit in the list
-    diffs: list[str] = [
+    outputs: list[str] = [
         subprocess.check_output(
             [
                 "git",
                 "--no-pager",
                 "show",
+                "--no-notes",
                 commit,
+                "-s",
+                "--pretty=%cd",
                 "--quiet",
                 "--patch",
                 f"-U{context_lines}",
@@ -45,10 +53,19 @@ def get_commits(
         ).decode()
         for commit in hashes
     ]
-    return [
-        Commit(commit_hash=commit_hash, diff=diff)
-        for commit_hash, diff in zip(hashes, diffs)
-    ]
+
+    def _gen():
+        for commit_hash, output in zip(hashes, outputs):
+            first_linebreak = output.find("\n")
+            dt = output[:first_linebreak].strip()
+            diff = output[first_linebreak:].strip()
+            yield Commit(
+                commit_hash=commit_hash,
+                date_time_str=dt,
+                diff=diff,
+            )
+
+    return list(_gen())
 
 
 def get_descriptions(commits: list[Commit]) -> list[CommitInfo]:
