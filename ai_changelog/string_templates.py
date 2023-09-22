@@ -14,8 +14,6 @@ hum_msg = """
 
 
 markdown_template = """
-## {short_description}
-{commit_hash}
-----------------
+## [{short_description}](https://github.com/{repo_name}/commits/{commit_hash})
 {bullet_points}
 """
