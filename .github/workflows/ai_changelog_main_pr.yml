@@ -30,6 +30,13 @@ jobs:
       run: |
         pip install --user --no-cache-dir pydantic==2.3.0 langchain==0.0.298 openai==0.28.0
 
+    - name: Check and create AI_CHANGELOG.md if not exists
+      run: |
+        if [[ ! -f AI_CHANGELOG.md ]]; then
+          echo "# AI Changelog" > AI_CHANGELOG.md
+          git add AI_CHANGELOG.md
+        fi
+
     - name: Execute script and prepend to AI_CHANGELOG.md
       env:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
