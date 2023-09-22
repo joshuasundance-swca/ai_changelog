@@ -8,7 +8,7 @@ OUTPUT=$(python ai_changelog/update.py)
 printf "%s\n\n" "$OUTPUT" >> temp.md
 
 if [[ -f AI_CHANGELOG.md ]]; then
-  git checkout AI_CHANGELOG.md  # To rollback the previous additions
+  git checkout origin/main -- AI_CHANGELOG.md  # To rollback the previous additions
   tail -n +3 AI_CHANGELOG.md >> temp.md
 fi
 
