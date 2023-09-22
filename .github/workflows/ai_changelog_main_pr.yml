@@ -37,18 +37,7 @@ jobs:
         LANGCHAIN_PROJECT: ai-changelog
         LANGCHAIN_ENDPOINT: https://api.smith.langchain.com
         LANGCHAIN_TRACING_V2: true
-      run: |
-        printf "# AI CHANGELOG\n\n" > temp.md
-        OUTPUT=$(python ai_changelog/update.py)
-        printf "$OUTPUT\n\n" >> temp.md
-
-        if [[ -f AI_CHANGELOG.md ]]; then
-          git checkout AI_CHANGELOG.md  # To rollback the previous additions
-          tail -n +3 AI_CHANGELOG.md >> temp.md
-        fi
-
-        mv temp.md AI_CHANGELOG.md
-        git add AI_CHANGELOG.md
+      run: update_changelog.sh
 
     - name: Commit changes
       uses: stefanzweifel/git-auto-commit-action@v4
