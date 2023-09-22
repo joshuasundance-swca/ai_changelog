@@ -1,5 +1,20 @@
 # AI CHANGELOG
 
+## [Updated Commit class field description](https://github.com/joshuasundance-swca/ai_changelog/commit/6f2e1077f88b32071a07dac5b1092b413ed61e20)
+Fri Sep 22 16:00:00 2023 -0400
+- The description for the 'date_time_str' field in the Commit class has been updated to improve clarity. The previous version lacked the 'description' keyword, which has now been added.
+
+## [Added '--no-notes' option to git show command in get_commits function](https://github.com/joshuasundance-swca/ai_changelog/commit/f637f0de5bb2875872bb250b9f59d2d7607b8e0b)
+Fri Sep 22 15:58:51 2023 -0400
+- This commit introduces a modification to the 'get_commits' function in 'ai_changelog/utils.py'.
+- Specifically, the '--no-notes' option has been added to the git show command. This option suppresses the display of notes that annotate a commit, providing a cleaner output.
+
+## [Added date and time to commit information](https://github.com/joshuasundance-swca/ai_changelog/commit/08866a85b73efb4cd7961ed695a5264569f2f337)
+Fri Sep 22 15:57:01 2023 -0400
+- The commit adds a formatted date and time string to the commit information. This is achieved by modifying the Commit class in the pydantic_models.py file, adding a new attribute 'date_time_str'.
+- In the string_templates.py file, the markdown template is updated to include the date and time string. The commit also simplifies the sys_msg and hum_msg templates in the same file.
+- The utils.py file is updated to include a new function 'get_timestamp' that retrieves the timestamp for a given commit hash. The 'get_commits' function is also modified to include the timestamp in the commit information.
+
 
 ## [Fixed issue with repeating commit summaries in changelog](https://github.com/joshuasundance-swca/ai_changelog/commit/b84998fbdf949bc0daa9ac0d4f724b4406f67851)
 - This commit addresses the issue of repeating commit summaries in the changelog. Previously, the script would not properly rollback the previous additions to the AI_CHANGELOG.md file, leading to an accumulation of repeated summaries.
