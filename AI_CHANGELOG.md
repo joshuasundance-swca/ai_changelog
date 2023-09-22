@@ -12,4 +12,3 @@ a4273faacb57222dfcec6f3446efc2f12bf40fc5
 ----------------
 - This commit introduces a new Python file named 'hello_world.py'.
 - The file contains a simple script that prints 'Hello, world!' when run.
-

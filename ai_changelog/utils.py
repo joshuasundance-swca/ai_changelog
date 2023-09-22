@@ -16,7 +16,7 @@ def get_commits(
     repo_path: Optional[str] = None,
     base_ref: str = "origin/main",
     head_ref: str = "HEAD",
-    context_lines: int = 5
+    context_lines: int = 5,
 ) -> list[Commit]:
     # Use current working directory if no repo path is provided
     repo_path = repo_path or os.getcwd()
@@ -24,7 +24,9 @@ def get_commits(
     subprocess.check_call(["cd", repo_path], shell=True)
     # Get the list of commit hashes between base_ref and head_ref
     hashes: list[str] = (
-        subprocess.check_output(["git", "rev-list", "--no-merges", f"{base_ref}..{head_ref}"])
+        subprocess.check_output(
+            ["git", "rev-list", "--no-merges", f"{base_ref}..{head_ref}"],
+        )
         .decode()
         .splitlines()
     )
@@ -38,10 +40,9 @@ def get_commits(
                 commit,
                 "--quiet",
                 "--patch",
-                f"-U{context_lines}"
-            ]
-        )
-        .decode()
+                f"-U{context_lines}",
+            ],
+        ).decode()
         for commit in hashes
     ]
     return [
@@ -58,7 +59,7 @@ def get_descriptions(commits: list[Commit]) -> list[CommitInfo]:
             ("system", sys_msg),
             ("human", hum_msg),
             ("human", "Tip: Make sure to answer in the correct format"),
-        ]
+        ],
     )
 
     chain = create_structured_output_chain(CommitDescription, llm, prompt)

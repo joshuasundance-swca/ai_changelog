@@ -11,15 +11,23 @@ class Commit(BaseModel):
 
 
 class CommitDescription(BaseModel):
-    short_description: str = Field(..., description="A technical and concise description of changes implemented in the commit")
-    long_description: List[str] = Field(..., description="Markdown bullet-point formatted list of changes implemented in the commit")
+    short_description: str = Field(
+        ...,
+        description="A technical and concise description of changes implemented in the commit",
+    )
+    long_description: List[str] = Field(
+        ...,
+        description="Markdown bullet-point formatted list of changes implemented in the commit",
+    )
 
 
 class CommitInfo(Commit, CommitDescription):
     def markdown(self):
-        bullet_points = "\n".join([f"- {line.strip('*- ')}" for line in self.long_description])
+        bullet_points = "\n".join(
+            [f"- {line.strip('*- ')}" for line in self.long_description],
+        )
         return markdown_template.format(
             short_description=self.short_description,
             commit_hash=self.commit_hash,
-            bullet_points=bullet_points
+            bullet_points=bullet_points,
         )
