@@ -28,7 +28,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install --user --no-cache-dir pydantic==2.3.0 langchain==0.0.298
+        pip install --user --no-cache-dir pydantic==2.3.0 langchain==0.0.298 openai==0.28.0
 
     - name: Execute script and prepend to AI_CHANGELOG.md
       env:
