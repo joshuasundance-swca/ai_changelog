@@ -103,7 +103,7 @@ if __name__ == "__main__":
         ]
     )
 
-    chain = create_structured_output_chain(CommitDescription, llm, prompt, verbose=True)
+    chain = create_structured_output_chain(CommitDescription, llm, prompt)
 
     results: list[dict] = chain.batch([commit.dict() for commit in commits])
 
