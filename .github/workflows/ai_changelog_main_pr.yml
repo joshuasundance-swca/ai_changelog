@@ -30,13 +30,6 @@ jobs:
       run: |
         pip install --user --no-cache-dir pydantic==2.3.0 langchain==0.0.298 openai==0.28.0
 
-    - name: Check and create AI_CHANGELOG.md if not exists
-      run: |
-        if [[ ! -f AI_CHANGELOG.md ]]; then
-          echo "# AI Changelog" > AI_CHANGELOG.md
-          git add AI_CHANGELOG.md
-        fi
-
     - name: Execute script and prepend to AI_CHANGELOG.md
       env:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -45,9 +38,16 @@ jobs:
         LANGCHAIN_ENDPOINT: https://api.smith.langchain.com
         LANGCHAIN_TRACING_V2: true
       run: |
+        printf "# AI CHANGELOG\n\n" > temp.md
         OUTPUT=$(python ai_changelog.py)
-        git checkout AI_CHANGELOG.md  # To rollback the previous additions
-        echo "$OUTPUT" | cat - AI_CHANGELOG.md > temp.md && mv temp.md AI_CHANGELOG.md
+        printf "$OUTPUT" >> temp.md
+        
+        if [[ -f AI_CHANGELOG.md ]]; then
+          git checkout AI_CHANGELOG.md  # To rollback the previous additions
+          tail -n +3 AI_CHANGELOG.md >> temp.md
+        fi
+        
+        mv temp.md AI_CHANGELOG.md
 
     - name: Commit changes
       uses: stefanzweifel/git-auto-commit-action@v4
