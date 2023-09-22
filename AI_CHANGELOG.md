@@ -1,6 +1,24 @@
 # AI CHANGELOG
 
 
+## [Fixed a typo in markdown_template](https://github.com/joshuasundance-swca/ai_changelog/commit/ddd9ce75383893fee14132a284eec573c46a002c)
+- In the file ai_changelog/string_templates.py, the URL in the markdown_template was incorrectly pointing to 'commits' instead of 'commit'. The typo has been fixed to correctly point to the 'commit'.
+
+
+
+## [Added hyperlink to commit in markdown](https://github.com/joshuasundance-swca/ai_changelog/commit/eb037d5ab4211fcfb8db3a96c96dbd4359fac967)
+- The commit 'eb037d5ab4211fcfb8db3a96c96dbd4359fac967' adds a hyperlink to the commit in the markdown output. This was achieved by modifying the markdown template in 'string_templates.py' to include the repository name and commit hash in a GitHub URL format.
+- The 'markdown' method in 'CommitInfo' class of 'pydantic_models.py' was updated to accept an optional 'repo_name' parameter. If 'repo_name' is not provided, the method attempts to fetch it from the environment variables.
+- A new environment variable 'REPO_NAME' is added in '.github/workflows/ai_changelog_main_pr.yml' to store the repository name.
+
+
+
+## [Added hyperlink functionality to markdown](https://github.com/joshuasundance-swca/ai_changelog/commit/7e7e956c59fb42752f6f607b28427669e30c24f5)
+- In this commit, the developer has introduced the functionality to create hyperlinks in markdown. This was achieved by modifying the markdown template in the 'string_templates.py' file to include a hyperlink format for the short description and commit hash.
+- Additionally, the developer added an optional 'repo_name' parameter to the 'markdown' method in the 'CommitInfo' class within the 'pydantic_models.py' file. If 'repo_name' is not provided, the method attempts to retrieve it from the environment variables. If it's not found in either place, a ValueError is raised.
+- Lastly, the 'REPO_NAME' environment variable was added to the 'ai_changelog_main_pr.yml' workflow file.
+
+
 ## [Added hyperlink to commit in markdown](https://github.com/joshuasundance-swca/ai_changelog/commits/7e7e956c59fb42752f6f607b28427669e30c24f5)
 - The commit '7e7e956c59fb42752f6f607b28427669e30c24f5' introduces a hyperlink to the commit in the markdown output. This was achieved by modifying the markdown template in 'string_templates.py' to include the repository name and commit hash in a GitHub URL format. To accommodate this change, the 'markdown' method in 'CommitInfo' class of 'pydantic_models.py' was updated to accept an optional 'repo_name' parameter. If 'repo_name' is not provided, the method attempts to fetch it from the environment variables. A new environment variable 'REPO_NAME' is added in '.github/workflows/ai_changelog_main_pr.yml' to store the repository name.
 
