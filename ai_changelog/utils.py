@@ -75,9 +75,3 @@ def get_descriptions(commits: list[Commit]) -> list[CommitInfo]:
 
 def infos_to_str(infos: list[CommitInfo]) -> str:
     return "\n\n".join([info.markdown() for info in infos])
-
-
-if __name__ == "__main__":
-    commits = get_commits()
-    infos = get_descriptions(commits)
-    print(infos_to_str(infos))
