@@ -37,7 +37,7 @@ jobs:
         LANGCHAIN_PROJECT: ai-changelog
         LANGCHAIN_ENDPOINT: https://api.smith.langchain.com
         LANGCHAIN_TRACING_V2: true
-      run: update_changelog.sh
+      run: /bin/bash ./update_changelog.sh
 
     - name: Commit changes
       uses: stefanzweifel/git-auto-commit-action@v4
