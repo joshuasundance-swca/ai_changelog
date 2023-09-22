@@ -42,6 +42,7 @@ def get_commits(
                 "git",
                 "--no-pager",
                 "show",
+                "--no-notes",
                 commit,
                 "-s",
                 "--pretty=%cd",
