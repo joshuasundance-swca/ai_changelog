@@ -1,10 +1,11 @@
+#!/usr/local/bin/python3
 import argparse
 import os
 import subprocess
 from typing import Optional
 
 from pydantic_models import Commit, CommitInfo
-from utils import get_commits, get_descriptions, infos_to_str
+from utils import get_commits, get_descriptions
 
 
 def main(
@@ -31,7 +32,7 @@ def main(
     )
     if new_commits:
         new_commit_infos: list[CommitInfo] = get_descriptions(new_commits)
-        new_descriptions: str = infos_to_str(new_commit_infos).strip()
+        new_descriptions: str = CommitInfo.infos_to_str(new_commit_infos).strip()
         existing_content = existing_content.strip() if existing_content else ""
 
         output = f"# AI CHANGELOG\n\n{new_descriptions}\n\n{existing_content}".strip()

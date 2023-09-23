@@ -53,3 +53,7 @@ class CommitInfo(Commit, CommitDescription):
             repo_name=_repo_name,
             date_time_str=self.date_time_str,
         )
+
+    @staticmethod
+    def infos_to_str(infos: list["CommitInfo"]) -> str:
+        return "\n\n".join([info.markdown() for info in infos])
