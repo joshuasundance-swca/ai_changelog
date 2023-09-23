@@ -31,6 +31,7 @@ def main(
     )
     new_commit_infos: list[CommitDescription] = get_descriptions(new_commits)
     new_descriptions: str = infos_to_str(new_commit_infos).strip()
+    existing_content = existing_content.strip() if existing_content else ""
 
     output = f"# AI CHANGELOG\n\n{new_descriptions}\n\n{existing_content}".strip()
 
