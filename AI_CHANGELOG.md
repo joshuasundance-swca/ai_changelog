@@ -1,18 +1,36 @@
 # AI CHANGELOG
 
+
+
 ## [Refactored update.py to Encapsulate Logic in main() Function](https://github.com/joshuasundance-swca/ai_changelog/commit/d12fd25f591598805658854bfdaf2dc9eb5a3fb1)
+
 Fri Sep 22 17:58:04 2023 -0400
+
 - The code in update.py was refactored to encapsulate the main logic within a new main() function. This change improves the readability and structure of the code. The main() function now contains the logic for checking if AI_CHANGELOG.md exists, restoring the original version if it does, reading its contents, generating the new AI_CHANGELOG.md, writing the output, and adding the file to the git staging area. The script now calls the main() function if it is run as the main module.
+
+
 
 ## [Replaced bash script with python for updating changelog](https://github.com/joshuasundance-swca/ai_changelog/commit/c21e386472d9aa04c8d73d6399e2103b83bc5357)
 
+
+
 Fri Sep 22 17:53:25 2023 -0400
+
+
 
 - The bash script used for updating the AI changelog has been replaced with a Python script. The Python script checks if the AI_CHANGELOG.md file exists. If it does, it restores the original version from the main branch and gets its contents starting from the 3rd line.
 
+
+
 - The script then generates new commit descriptions and combines them with the existing content. The new content is written to AI_CHANGELOG.md and the file is added to the git staging area.
 
+
+
 - In the GitHub workflow file, the run command has been updated to use the Python script instead of the bash script.
+
+
+
+
 
 
 
@@ -20,7 +38,15 @@ Fri Sep 22 17:53:25 2023 -0400
 
 
 
+
+
+
+
 Fri Sep 22 16:00:00 2023 -0400
+
+
+
+
 
 
 
@@ -32,7 +58,19 @@ Fri Sep 22 16:00:00 2023 -0400
 
 
 
+
+
+
+
+
+
+
+
 ## [Added '--no-notes' option to git show command in get_commits function](https://github.com/joshuasundance-swca/ai_changelog/commit/f637f0de5bb2875872bb250b9f59d2d7607b8e0b)
+
+
+
+
 
 
 
@@ -40,7 +78,15 @@ Fri Sep 22 15:58:51 2023 -0400
 
 
 
+
+
+
+
 - This commit introduces a modification to the 'get_commits' function in 'ai_changelog/utils.py'.
+
+
+
+
 
 
 
@@ -52,7 +98,19 @@ Fri Sep 22 15:58:51 2023 -0400
 
 
 
+
+
+
+
+
+
+
+
 ## [Added date and time to commit information](https://github.com/joshuasundance-swca/ai_changelog/commit/08866a85b73efb4cd7961ed695a5264569f2f337)
+
+
+
+
 
 
 
@@ -60,11 +118,23 @@ Fri Sep 22 15:57:01 2023 -0400
 
 
 
+
+
+
+
 - The commit adds a formatted date and time string to the commit information. This is achieved by modifying the Commit class in the pydantic_models.py file, adding a new attribute 'date_time_str'.
 
 
 
+
+
+
+
 - In the string_templates.py file, the markdown template is updated to include the date and time string. The commit also simplifies the sys_msg and hum_msg templates in the same file.
+
+
+
+
 
 
 
@@ -80,11 +150,31 @@ Fri Sep 22 15:57:01 2023 -0400
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 ## [Fixed issue with repeating commit summaries in changelog](https://github.com/joshuasundance-swca/ai_changelog/commit/b84998fbdf949bc0daa9ac0d4f724b4406f67851)
 
 
 
+
+
+
+
 - This commit addresses the issue of repeating commit summaries in the changelog. Previously, the script would not properly rollback the previous additions to the AI_CHANGELOG.md file, leading to an accumulation of repeated summaries.
+
+
+
+
 
 
 
@@ -104,7 +194,27 @@ Fri Sep 22 15:57:01 2023 -0400
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## [Updated AI Changelog](https://github.com/joshuasundance-swca/ai_changelog/commit/529609cb0748a803c601dee4408815a00cac8bfc)
+
+
+
+
 
 
 
@@ -112,7 +222,15 @@ Fri Sep 22 15:57:01 2023 -0400
 
 
 
+
+
+
+
 - 1) Fixed a typo in the markdown_template URL in the file ai_changelog/string_templates.py.
+
+
+
+
 
 
 
@@ -120,7 +238,15 @@ Fri Sep 22 15:57:01 2023 -0400
 
 
 
+
+
+
+
 - 3) Added the 'REPO_NAME' environment variable in '.github/workflows/ai_changelog_main_pr.yml' to store the repository name.
+
+
+
+
 
 
 
@@ -140,11 +266,35 @@ Fri Sep 22 15:57:01 2023 -0400
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## [Fixed typo in markdown_template string](https://github.com/joshuasundance-swca/ai_changelog/commit/ddd9ce75383893fee14132a284eec573c46a002c)
 
 
 
+
+
+
+
 - The commit ddd9ce75383893fee14132a284eec573c46a002c by Joshua Sundance Bailey on Fri Sep 22 15:05:12 2023 is a minor fix for a typo in the 'markdown_template' string in the ai_changelog/string_templates.py file.
+
+
+
+
 
 
 
@@ -164,7 +314,27 @@ Fri Sep 22 15:57:01 2023 -0400
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## [Added hyperlink to commit in markdown](https://github.com/joshuasundance-swca/ai_changelog/commit/eb037d5ab4211fcfb8db3a96c96dbd4359fac967)
+
+
+
+
 
 
 
@@ -172,7 +342,15 @@ Fri Sep 22 15:57:01 2023 -0400
 
 
 
+
+
+
+
 - To accommodate this change, the 'markdown' method in 'CommitInfo' class of 'pydantic_models.py' was updated to accept an optional 'repo_name' parameter. If 'repo_name' is not provided, the method attempts to fetch it from the environment variables.
+
+
+
+
 
 
 
@@ -192,7 +370,27 @@ Fri Sep 22 15:57:01 2023 -0400
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## [Added hyperlink functionality to markdown](https://github.com/joshuasundance-swca/ai_changelog/commit/7e7e956c59fb42752f6f607b28427669e30c24f5)
+
+
+
+
 
 
 
@@ -200,11 +398,23 @@ Fri Sep 22 15:57:01 2023 -0400
 
 
 
+
+
+
+
 - In the 'ai_changelog_main_pr.yml', the REPO_NAME was added as an environment variable.
 
 
 
+
+
+
+
 - In 'pydantic_models.py', the 'markdown' method was updated to include the 'repo_name' parameter, which defaults to the REPO_NAME environment variable if not provided. If the 'repo_name' is not provided and the REPO_NAME environment variable is not set, a ValueError is raised.
+
+
+
+
 
 
 
@@ -220,7 +430,23 @@ Fri Sep 22 15:57:01 2023 -0400
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 ## Added .gitignore file
+
+
+
+
 
 
 
@@ -228,7 +454,15 @@ Fri Sep 22 15:57:01 2023 -0400
 
 
 
+
+
+
+
 ----------------
+
+
+
+
 
 
 
@@ -244,7 +478,23 @@ Fri Sep 22 15:57:01 2023 -0400
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 ## Fixed pip install command in GitHub Actions workflow
+
+
+
+
 
 
 
@@ -252,7 +502,15 @@ Fri Sep 22 15:57:01 2023 -0400
 
 
 
+
+
+
+
 ----------------
+
+
+
+
 
 
 
@@ -272,7 +530,27 @@ Fri Sep 22 15:57:01 2023 -0400
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Added requirements.txt
+
+
+
+
 
 
 
@@ -280,7 +558,15 @@ Fri Sep 22 15:57:01 2023 -0400
 
 
 
+
+
+
+
 ----------------
+
+
+
+
 
 
 
@@ -288,11 +574,23 @@ Fri Sep 22 15:57:01 2023 -0400
 
 
 
+
+
+
+
 - 1. langchain version 0.0.298
 
 
 
+
+
+
+
 - 2. openai version 0.28.0
+
+
+
+
 
 
 
@@ -312,7 +610,27 @@ Fri Sep 22 15:57:01 2023 -0400
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Separated Python setup and dependency installation steps in GitHub workflow
+
+
+
+
 
 
 
@@ -320,7 +638,15 @@ Fri Sep 22 15:57:01 2023 -0400
 
 
 
+
+
+
+
 ----------------
+
+
+
+
 
 
 
@@ -340,7 +666,27 @@ Fri Sep 22 15:57:01 2023 -0400
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Refactored Python setup in GitHub workflow and updated import statements in Python scripts
+
+
+
+
 
 
 
@@ -348,7 +694,15 @@ Fri Sep 22 15:57:01 2023 -0400
 
 
 
+
+
+
+
 ----------------
+
+
+
+
 
 
 
@@ -356,11 +710,23 @@ Fri Sep 22 15:57:01 2023 -0400
 
 
 
+
+
+
+
 - Removed unnecessary __init__.py file from ai_changelog directory.
 
 
 
+
+
+
+
 - Refactored import statements in pydantic_models.py, update.py, and utils.py to import from local directories instead of ai_changelog.
+
+
+
+
 
 
 
@@ -380,7 +746,27 @@ Fri Sep 22 15:57:01 2023 -0400
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Fixed script execution command
+
+
+
+
 
 
 
@@ -388,11 +774,23 @@ b88f695bf2f58c70e828077830fb4365aacff32e
 
 
 
+
+
+
+
 ----------------
 
 
 
+
+
+
+
 - Updated the command to execute the 'update_changelog.sh' script in the GitHub workflow file 'ai_changelog_main_pr.yml'.
+
+
+
+
 
 
 
@@ -412,7 +810,27 @@ b88f695bf2f58c70e828077830fb4365aacff32e
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Refactored AI Changelog Update Process
+
+
+
+
 
 
 
@@ -420,7 +838,15 @@ ff7719e90b74122f6d326b5a4c1ff070fdcc698f
 
 
 
+
+
+
+
 ----------------
+
+
+
+
 
 
 
@@ -440,7 +866,27 @@ ff7719e90b74122f6d326b5a4c1ff070fdcc698f
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Installation and implementation of pre-commit hooks
+
+
+
+
 
 
 
@@ -448,11 +894,23 @@ baa19fd17f49932c007e76fecf0dcda90e986283
 
 
 
+
+
+
+
 ----------------
 
 
 
+
+
+
+
 - This commit introduces the installation and running of pre-commit hooks to ensure code quality before commits are pushed. The hooks include checks for syntax errors, merge conflicts, trailing whitespaces, and more.
+
+
+
+
 
 
 
@@ -472,7 +930,27 @@ baa19fd17f49932c007e76fecf0dcda90e986283
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Updated GitHub action to call the update script from new location
+
+
+
+
 
 
 
@@ -480,7 +958,15 @@ baa19fd17f49932c007e76fecf0dcda90e986283
 
 
 
+
+
+
+
 ----------------
+
+
+
+
 
 
 
@@ -500,7 +986,27 @@ baa19fd17f49932c007e76fecf0dcda90e986283
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Refactor main function to new file and rename ai_changelog.py to utils.py
+
+
+
+
 
 
 
@@ -508,11 +1014,23 @@ bad72996e057ae700e957f00a5a8dddd9827dfd7
 
 
 
+
+
+
+
 ----------------
 
 
 
+
+
+
+
 - The main function that was previously in ai_changelog.py has been moved to a new file called update.py. This helps in organizing the codebase and separating concerns.
+
+
+
+
 
 
 
@@ -532,7 +1050,27 @@ bad72996e057ae700e957f00a5a8dddd9827dfd7
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Refactored main script into separate functions
+
+
+
+
 
 
 
@@ -540,7 +1078,15 @@ bad72996e057ae700e957f00a5a8dddd9827dfd7
 
 
 
+
+
+
+
 ----------------
+
+
+
+
 
 
 
@@ -548,7 +1094,15 @@ bad72996e057ae700e957f00a5a8dddd9827dfd7
 
 
 
+
+
+
+
 - The 'get_commits' function was already present. Two new functions were added: 'get_descriptions' and 'infos_to_str'.
+
+
+
+
 
 
 
@@ -556,7 +1110,15 @@ bad72996e057ae700e957f00a5a8dddd9827dfd7
 
 
 
+
+
+
+
 - 'infos_to_str' takes a list of 'CommitInfo' objects and returns a formatted string representation of these objects, ready for printing.
+
+
+
+
 
 
 
@@ -576,7 +1138,27 @@ bad72996e057ae700e957f00a5a8dddd9827dfd7
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Moved ai_changelog.py to a new directory
+
+
+
+
 
 
 
@@ -584,7 +1166,15 @@ bad72996e057ae700e957f00a5a8dddd9827dfd7
 
 
 
+
+
+
+
 ----------------
+
+
+
+
 
 
 
@@ -604,7 +1194,27 @@ bad72996e057ae700e957f00a5a8dddd9827dfd7
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Refactored code by moving Pydantic models to a separate file
+
+
+
+
 
 
 
@@ -612,11 +1222,23 @@ bad72996e057ae700e957f00a5a8dddd9827dfd7
 
 
 
+
+
+
+
 ----------------
 
 
 
+
+
+
+
 - Moved the Pydantic models 'Commit', 'CommitDescription', and 'CommitInfo' from 'ai_changelog.py' to a new file named 'ai_changelog/pydantic_models.py'.
+
+
+
+
 
 
 
@@ -636,7 +1258,27 @@ bad72996e057ae700e957f00a5a8dddd9827dfd7
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Refactored string templates to a separate file
+
+
+
+
 
 
 
@@ -644,7 +1286,15 @@ bad72996e057ae700e957f00a5a8dddd9827dfd7
 
 
 
+
+
+
+
 ----------------
+
+
+
+
 
 
 
@@ -652,7 +1302,15 @@ bad72996e057ae700e957f00a5a8dddd9827dfd7
 
 
 
+
+
+
+
 - This change helps in improving the code organization and readability by separating the string templates from the main logic of the program.
+
+
+
+
 
 
 
@@ -672,7 +1330,27 @@ bad72996e057ae700e957f00a5a8dddd9827dfd7
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Creation of ai_changelog/__init__.py
+
+
+
+
 
 
 
@@ -680,7 +1358,15 @@ b8b3377a6f0016108c8860d28fa23ef0098e4418
 
 
 
+
+
+
+
 ----------------
+
+
+
+
 
 
 
@@ -700,7 +1386,27 @@ b8b3377a6f0016108c8860d28fa23ef0098e4418
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Removed hello_world.py
+
+
+
+
 
 
 
@@ -708,7 +1414,15 @@ b79d5c378120eabad7062cbad29dc0e1e9b6b2b1
 
 
 
+
+
+
+
 ----------------
+
+
+
+
 
 
 
@@ -724,7 +1438,23 @@ b79d5c378120eabad7062cbad29dc0e1e9b6b2b1
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 ## Added additional print statements to hello_world.py
+
+
+
+
 
 
 
@@ -732,7 +1462,15 @@ a4273faacb57222dfcec6f3446efc2f12bf40fc5
 
 
 
+
+
+
+
 ----------------
+
+
+
+
 
 
 
@@ -748,7 +1486,23 @@ a4273faacb57222dfcec6f3446efc2f12bf40fc5
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 ## Added hello_world.py
+
+
+
+
 
 
 
@@ -756,11 +1510,23 @@ a4273faacb57222dfcec6f3446efc2f12bf40fc5
 
 
 
+
+
+
+
 ----------------
 
 
 
+
+
+
+
 - This commit introduces a new Python file named 'hello_world.py'.
+
+
+
+
 
 
 
