@@ -9,7 +9,7 @@ from utils import get_commits, get_descriptions, infos_to_str
 
 def main(
     repo_path: Optional[str] = None,
-    base_ref: str = "origin/main",
+    base_ref: str = "HEAD^1",
     head_ref: str = "HEAD",
     context_lines: int = 5,
 ):

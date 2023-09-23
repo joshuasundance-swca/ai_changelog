@@ -35,6 +35,7 @@ def get_commits(
         .decode()
         .strip()
     )
+    print(merge_base)
     # Get the list of commit hashes between base_ref and head_ref
     hashes: list[str] = (
         subprocess.check_output(
@@ -43,6 +44,7 @@ def get_commits(
         .decode()
         .splitlines()
     )
+    print(hashes)
     # Get the diff for each commit in the list
     outputs: list[str] = [
         subprocess.check_output(
