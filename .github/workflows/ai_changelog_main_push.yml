@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
     types: [opened, synchronize]
+    paths-ignore:
+      - "AI_CHANGELOG.md"
 
 jobs:
   update-changelog:
