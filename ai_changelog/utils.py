@@ -79,7 +79,7 @@ def get_descriptions(commits: list[Commit]) -> list[CommitInfo]:
         ],
     )
 
-    chain = create_structured_output_chain(CommitDescription, llm, prompt)
+    chain = create_structured_output_chain(CommitDescription, llm, prompt, verbose=True)
 
     results: list[dict] = chain.batch([commit.dict() for commit in commits])
 
