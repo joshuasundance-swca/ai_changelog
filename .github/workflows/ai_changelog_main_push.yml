@@ -40,7 +40,7 @@ jobs:
         LANGCHAIN_ENDPOINT: https://api.smith.langchain.com
         LANGCHAIN_TRACING_V2: true
         REPO_NAME: ${{ github.repository }}
-      run: python ./ai_changelog/update.py --base_ref HEAD^2
+      run: python ./ai_changelog/update.py
 
     - name: Commit changes
       uses: stefanzweifel/git-auto-commit-action@v4
