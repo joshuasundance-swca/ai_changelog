@@ -1,19 +1,51 @@
 #!/usr/local/bin/python3
+"""Update the AI_CHANGELOG.md file with the latest changes."""
 import argparse
 import os
 import subprocess
-from typing import Optional
 
 from pydantic_models import Commit, CommitInfo
 from utils import get_commits, get_descriptions
 
 
-def main(
-    repo_path: Optional[str] = None,
-    before_ref: str = "origin/main^",
-    after_ref: str = "origin/main",
-    context_lines: int = 5,
-):
+def main():
+    """Update the AI_CHANGELOG.md file with the latest changes."""
+    parser = argparse.ArgumentParser(description="Process command line arguments.")
+    parser.add_argument(
+        "--repo_path",
+        type=str,
+        default=None,
+        help="Path to the repository",
+    )
+    parser.add_argument(
+        "--before_ref",
+        type=str,
+        default="origin/main^",
+        help="Reference point before the changes",
+    )
+    parser.add_argument(
+        "--after_ref",
+        type=str,
+        default="origin/main",
+        help="Reference point after the changes",
+    )
+    parser.add_argument(
+        "--context_lines",
+        type=int,
+        default=5,
+        help="Number of context lines for each commit",
+    )
+
+    args = parser.parse_args()
+
+    repo_path = args.repo_path
+
+    before_ref = args.before_ref
+
+    after_ref = args.after_ref
+
+    context_lines = args.context_lines
+
     # Check to see if AI_CHANGELOG.md already exists
     if os.path.isfile("AI_CHANGELOG.md"):
         # If so, restore the original version from main
@@ -46,37 +78,4 @@ def main(
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Process command line arguments.")
-    parser.add_argument(
-        "--repo_path",
-        type=str,
-        default=None,
-        help="Path to the repository",
-    )
-    parser.add_argument(
-        "--before_ref",
-        type=str,
-        default="origin/main^",
-        help="Reference point before the changes",
-    )
-    parser.add_argument(
-        "--after_ref",
-        type=str,
-        default="origin/main",
-        help="Reference point after the changes",
-    )
-    parser.add_argument(
-        "--context_lines",
-        type=int,
-        default=5,
-        help="Number of context lines for each commit",
-    )
-
-    args = parser.parse_args()
-
-    main(
-        repo_path=args.repo_path,
-        before_ref=args.before_ref,
-        after_ref=args.after_ref,
-        context_lines=args.context_lines,
-    )
+    main()
