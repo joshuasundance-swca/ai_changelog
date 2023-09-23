@@ -73,18 +73,6 @@ def get_commits(
     return list(_gen())
 
 
-def get_repo_name(repo_path: Optional[str] = None) -> str:
-    repo_path = repo_path or os.getcwd()
-    os.chdir(repo_path)
-    return (
-        subprocess.check_output(["git", "remote", "get-url", "origin"])
-        .decode()
-        .replace("https://github.com/", "")
-        .replace(".git", "")
-        .strip()
-    )
-
-
 def get_descriptions(commits: list[Commit]) -> list[CommitInfo]:
     llm = ChatOpenAI(model="gpt-4", temperature=0.5)
 

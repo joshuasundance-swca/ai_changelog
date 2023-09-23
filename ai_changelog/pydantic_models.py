@@ -4,7 +4,7 @@ from typing import List, Optional
 from langchain.pydantic_v1 import BaseModel, Field
 
 from string_templates import markdown_template
-from utils import get_repo_name
+import subprocess
 
 
 class Commit(BaseModel):
@@ -25,8 +25,20 @@ class CommitDescription(BaseModel):
 
 
 class CommitInfo(Commit, CommitDescription):
+    @staticmethod
+    def get_repo_name(repo_path: Optional[str] = None) -> str:
+        repo_path = repo_path or os.getcwd()
+        os.chdir(repo_path)
+        return (
+            subprocess.check_output(["git", "remote", "get-url", "origin"])
+            .decode()
+            .replace("https://github.com/", "")
+            .replace(".git", "")
+            .strip()
+        )
+
     def markdown(self, repo_name: Optional[str] = None) -> str:
-        _repo_name = repo_name or os.environ["REPO_NAME"] or get_repo_name()
+        _repo_name = repo_name or os.environ["REPO_NAME"] or self.get_repo_name()
         if _repo_name is None:
             raise ValueError(
                 "repo_name not given and REPO_NAME not found in environment variables",
