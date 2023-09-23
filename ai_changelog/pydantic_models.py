@@ -33,7 +33,7 @@ class CommitInfo(Commit, CommitDescription):
             )
         bullet_points = "\n".join(
             [f"- {line.strip('*- ')}" for line in self.long_description],
-        )
+        ).strip()
         return markdown_template.format(
             short_description=self.short_description,
             commit_hash=self.commit_hash,
