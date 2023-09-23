@@ -88,3 +88,4 @@ venv
 venv.bak/
 venv/
 wheels/
+.idea

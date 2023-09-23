@@ -94,7 +94,3 @@ def get_descriptions(commits: list[Commit]) -> list[CommitInfo]:
         CommitInfo(**commit.dict(), **commit_description.dict())
         for commit, commit_description in zip(commits, outputs)
     ]
-
-
-def infos_to_str(infos: list[CommitInfo]) -> str:
-    return "\n\n".join([info.markdown() for info in infos])
