@@ -1,4 +1,4 @@
-name: Update AI Changelog
+name: Update AI Changelog on Push to Main
 
 on:
   push:
