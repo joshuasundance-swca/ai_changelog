@@ -9,14 +9,14 @@ from utils import get_commits, get_descriptions, infos_to_str
 
 def main(
     repo_path: Optional[str] = None,
-    base_ref: str = "HEAD^1",
-    head_ref: str = "HEAD",
+    before_ref: str = "origin/main^",
+    after_ref: str = "origin/main",
     context_lines: int = 5,
 ):
     # Check to see if AI_CHANGELOG.md already exists
     if os.path.isfile("AI_CHANGELOG.md"):
         # If so, restore the original version from main
-        subprocess.call(["git", "checkout", "origin/main", "--", "AI_CHANGELOG.md"])
+        subprocess.call(["git", "checkout", before_ref, "--", "AI_CHANGELOG.md"])
 
         # Get its contents starting from the 3rd line
         with open("AI_CHANGELOG.md", "r") as existing_changelog:
@@ -25,8 +25,8 @@ def main(
     # Generate the new AI_CHANGELOG.md
     new_commits: list[Commit] = get_commits(
         repo_path=repo_path,
-        base_ref=base_ref,
-        head_ref=head_ref,
+        before_ref=before_ref,
+        after_ref=after_ref,
         context_lines=context_lines,
     )
     new_commit_infos: list[CommitDescription] = get_descriptions(new_commits)
@@ -51,16 +51,16 @@ if __name__ == "__main__":
         help="Path to the repository",
     )
     parser.add_argument(
-        "--base_ref",
+        "--before_ref",
         type=str,
-        default="origin/main",
-        help="Base reference for commits",
+        default="origin/main^",
+        help="Reference point before the changes",
     )
     parser.add_argument(
-        "--head_ref",
+        "--after_ref",
         type=str,
-        default="HEAD",
-        help="Head reference for commits",
+        default="origin/main",
+        help="Reference point after the changes",
     )
     parser.add_argument(
         "--context_lines",
@@ -73,7 +73,7 @@ if __name__ == "__main__":
 
     main(
         repo_path=args.repo_path,
-        base_ref=args.base_ref,
-        head_ref=args.head_ref,
+        before_ref=args.before_ref,
+        after_ref=args.after_ref,
         context_lines=args.context_lines,
     )

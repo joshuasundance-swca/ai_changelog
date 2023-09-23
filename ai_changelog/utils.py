@@ -19,27 +19,22 @@ def get_timestamp(commit_hash: str, format: str = "%cD") -> str:
 
 def get_commits(
     repo_path: Optional[str] = None,
-    base_ref: str = "HEAD^1",
-    head_ref: str = "HEAD",
+    before_ref: str = "origin/main^",
+    after_ref: str = "origin/main",
     context_lines: int = 5,
 ) -> list[Commit]:
     # Use current working directory if no repo path is provided
     repo_path = repo_path or os.getcwd()
     # Navigate to the repo path
-    subprocess.check_call(["cd", repo_path], shell=True)
-    # Find the common ancestor of base_ref and head_ref
-    merge_base: str = (
-        subprocess.check_output(
-            ["git", "merge-base", base_ref, head_ref],
-        )
-        .decode()
-        .strip()
-    )
-    print(merge_base)
-    # Get the list of commit hashes between base_ref and head_ref
+    os.chdir(repo_path)
+    # Get the commit hashes for BEFORE and AFTER
+    before = subprocess.check_output(["git", "rev-parse", before_ref]).decode().strip()
+    subprocess.check_call(["git", "fetch"])
+    after = subprocess.check_output(["git", "rev-parse", after_ref]).decode().strip()
+    # Get the list of commit hashes between before and after
     hashes: list[str] = (
         subprocess.check_output(
-            ["git", "rev-list", "--no-merges", f"{merge_base}..{head_ref}"],
+            ["git", "rev-list", "--no-merges", f"{before}..{after}"],
         )
         .decode()
         .splitlines()
