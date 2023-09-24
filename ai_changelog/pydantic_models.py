@@ -53,7 +53,7 @@ class CommitInfo(Commit, CommitDescription):
                 "repo_name not given and REPO_NAME not found in environment variables",
             )
         bullet_points = "\n".join(
-            [f"- {line.strip('*- ')}" for line in self.long_description],
+            [f"- {line.strip('*- ').strip()}" for line in self.long_description],
         ).strip()
         return markdown_template.format(
             short_description=self.short_description,
@@ -66,4 +66,4 @@ class CommitInfo(Commit, CommitDescription):
     @staticmethod
     def infos_to_str(infos: list["CommitInfo"]) -> str:
         """Convert a list of CommitInfo objects to a string"""
-        return "\n\n".join([info.markdown() for info in infos])
+        return "\n".join([info.markdown() for info in infos])
