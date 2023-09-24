@@ -1,5 +1,8 @@
 FROM python:3.11-slim-buster
 
+RUN apt-get update && apt-get install -y --no-install-recommends git && \
+    rm -rf /var/lib/apt/lists/*
+
 RUN adduser --uid 1000 --disabled-password --gecos '' appuser
 USER 1000
 

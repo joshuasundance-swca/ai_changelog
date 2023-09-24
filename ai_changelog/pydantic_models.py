@@ -64,6 +64,6 @@ class CommitInfo(Commit, CommitDescription):
         )
 
     @staticmethod
-    def infos_to_str(infos: list["CommitInfo"]) -> str:
+    def infos_to_str(infos: List["CommitInfo"]) -> str:
         """Convert a list of CommitInfo objects to a string"""
         return "\n".join([info.markdown().strip() for info in infos]).strip()
