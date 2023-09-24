@@ -1,3 +1,5 @@
+"""Utility functions for the ai_changelog package"""
+
 import os
 import subprocess
 from typing import Optional
@@ -12,8 +14,9 @@ from pydantic_models import CommitDescription, CommitInfo, Commit
 from string_templates import sys_msg, hum_msg
 
 
-def get_timestamp(commit_hash: str, format: str = "%cD") -> str:
-    cmd = ["git", "show", "-s", f"--format={format}", commit_hash]
+def get_timestamp(commit_hash: str, format_str: str = "%cD") -> str:
+    """Get the timestamp for a commit hash"""
+    cmd = ["git", "show", "-s", f"--format={format_str}", commit_hash]
     return subprocess.check_output(cmd).decode().strip()
 
 
@@ -23,6 +26,7 @@ def get_commits(
     after_ref: str = "origin/main",
     context_lines: int = 5,
 ) -> list[Commit]:
+    """Get the list of commits between two references"""
     # Use current working directory if no repo path is provided
     repo_path = repo_path or os.getcwd()
     # Navigate to the repo path
@@ -60,6 +64,7 @@ def get_commits(
     ]
 
     def _gen():
+        """Generate a list of Commit objects"""
         for commit_hash, output in zip(hashes, outputs):
             first_linebreak = output.find("\n")
             dt = output[:first_linebreak].strip()
@@ -74,6 +79,7 @@ def get_commits(
 
 
 def get_descriptions(commits: list[Commit]) -> list[CommitInfo]:
+    """Get the descriptions for a list of commits"""
     llm = ChatOpenAI(model="gpt-4", temperature=0.5)
 
     prompt = ChatPromptTemplate.from_messages(
