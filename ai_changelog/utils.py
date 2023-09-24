@@ -59,7 +59,9 @@ def get_commits(
                 "--patch",
                 f"-U{context_lines}",
             ],
-        ).decode()
+        )
+        .decode()
+        .strip()
         for commit in hashes
     ]
 
@@ -70,9 +72,9 @@ def get_commits(
             dt = output[:first_linebreak].strip()
             diff = output[first_linebreak:].strip()
             yield Commit(
-                commit_hash=commit_hash,
-                date_time_str=dt,
-                diff=diff,
+                commit_hash=commit_hash.strip(),
+                date_time_str=dt.strip(),
+                diff=diff.strip(),
             )
 
     return list(_gen())
