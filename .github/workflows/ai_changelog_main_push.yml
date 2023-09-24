@@ -28,9 +28,10 @@ jobs:
         python-version: 3.11
         cache: pip
 
-    - name: Install dependencies
+    - name: Install Python libraries
       run: |
         pip install --user -r requirements.txt
+        pip install --user .
 
     - name: Execute script and prepend to AI_CHANGELOG.md
       env:
