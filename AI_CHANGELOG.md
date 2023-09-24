@@ -1,7 +1,7 @@
 # AI CHANGELOG
-## [Updated Python setup and installation steps in GitHub workflow](https://github.com/joshuasundance-swca/ai_changelog/commit/4ffdc787bad7321558d255eebde289e57488bb17)
-Sat Sep 23 21:06:45 2023 -0400
-- The Python setup and installation steps in the GitHub workflow have been updated. The Python version has been set to 3.11, and the pip cache has been enabled. The step for installing dependencies has been renamed to 'Install Python libraries', and an additional command has been added to install the current directory as a package.
+## [Updated Python setup and installation steps in GitHub workflow](https://github.com/joshuasundance-swca/ai_changelog/commit/e89e3bf1dbb7eac79355f45be1cb50de984443c1)
+Sun Sep 24 01:07:48 2023 +0000
+- This commit updates the Python setup and installation steps in the GitHub workflow. The Python version is now set to 3.11, and pip cache is enabled. The step for installing dependencies is renamed to 'Install Python libraries', and a command to install the current directory as a package is added.
 
 Sat Sep 23 20:37:34 2023 -0400
 - This commit refactors the import statements in __main__.py, pydantic_models.py, and utils.py. The changes involve removing the ai_changelog prefix from the import statements, which suggests a possible restructuring of the project's directory.
