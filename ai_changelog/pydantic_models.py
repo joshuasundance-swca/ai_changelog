@@ -5,7 +5,7 @@ from typing import List, Optional
 
 from langchain.pydantic_v1 import BaseModel, Field
 
-from string_templates import markdown_template
+from ai_changelog.string_templates import markdown_template
 
 
 class Commit(BaseModel):
