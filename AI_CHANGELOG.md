@@ -1,5 +1,18 @@
 # AI CHANGELOG
-## [Added commit message to AI changelog update workflow](https://github.com/joshuasundance-swca/ai_changelog/commit/4d179cbc25eba4dd03d4fbcc74874d732e7002e5)
+## [Refactored get_commits function in ai_changelog/utils.py](https://github.com/joshuasundance-swca/ai_changelog/commit/b2382221dd7feedf3a4f2c4505d369f3413c70b8)
+Sun Sep 24 00:56:46 2023 -0400
+- In the get_commits function, the outputs variable was refactored into two separate variables: dts and diffs. This change improves code readability by clearly separating the date time strings and diffs for each commit.
+## [Refactored CommitInfo class in pydantic_models.py](https://github.com/joshuasundance-swca/ai_changelog/commit/66ed925d62e9e0c2933ed4f31efa4eed2289a89b)
+Sun Sep 24 00:43:32 2023 -0400
+- Removed unnecessary comment line in CommitDescription class.
+- Simplified the markdown method in the CommitInfo class by removing the optional repo_name parameter and the related error handling, instead directly using the get_repo_name method.
+## [Refactored get_commits function in utils.py](https://github.com/joshuasundance-swca/ai_changelog/commit/7a2ad04177df1e1c1811f3823d8a78120cd34f3d)
+Sun Sep 24 00:39:38 2023 -0400
+- The get_commits function in utils.py was refactored to improve its readability and efficiency. The changes include the extraction of the dt_diffs_from_hashes function call to a separate variable 'outputs' before the return statement. This is followed by printing the 'outputs' to the console for debugging purposes. The diff attribute of the Commit object was also modified to strip any leading or trailing whitespace.
+## [Refactoring and comment addition in `pydantic_models.py` and `utils.py`](https://github.com/joshuasundance-swca/ai_changelog/commit/47bedf192c67163a509856ef57e68c24732a9b82)
+Sun Sep 24 00:31:46 2023 -0400
+- Added a comment in `pydantic_models.py` for testing purposes.
+- Refactored the `get_commits` function in `utils.py` to call `dt_diffs_from_hashes` directly in the list comprehension.
 Sat Sep 23 21:17:03 2023 -0400
 - This commit includes a change to the AI Changelog GitHub Actions workflow. Specifically, it adds a commit message to the 'Commit changes' step of the workflow.
 Sun Sep 24 01:07:48 2023 +0000
