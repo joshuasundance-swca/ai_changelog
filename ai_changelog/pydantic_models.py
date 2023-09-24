@@ -45,13 +45,9 @@ class CommitInfo(Commit, CommitDescription):
             .strip()
         )
 
-    def markdown(self, repo_name: Optional[str] = None) -> str:
+    def markdown(self) -> str:
         """Generate markdown for the commit info"""
-        _repo_name = repo_name or os.environ["REPO_NAME"] or self.get_repo_name()
-        if _repo_name is None:
-            raise ValueError(
-                "repo_name not given and REPO_NAME not found in environment variables",
-            )
+        _repo_name = self.get_repo_name()
         bullet_points = "\n".join(
             [f"- {line.strip('*- ').strip()}" for line in self.long_description],
         ).strip()
