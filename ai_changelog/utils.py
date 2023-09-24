@@ -2,7 +2,7 @@
 
 import os
 import subprocess
-from typing import Optional
+from typing import List, Union
 
 from langchain.chains.openai_functions import (
     create_structured_output_chain,
@@ -20,67 +20,64 @@ def get_timestamp(commit_hash: str, format_str: str = "%cD") -> str:
     return subprocess.check_output(cmd).decode().strip()
 
 
+def rev_parse(ref: str) -> str:
+    """Get the commit hash for a reference"""
+    return subprocess.check_output(["git", "rev-parse", ref]).decode().strip()
+
+
+def dt_diffs_from_hashes(
+    hashes: List[str],
+    context_lines: int = 5,
+) -> List[List[str]]:
+    cmd = "git --no-pager show --no-notes {commit} -s --pretty=%cd --quiet --patch -U{context_lines}"
+    return [
+        output.split("\n", maxsplit=1)
+        for output in [
+            subprocess.check_output(
+                cmd.format(commit=commit, context_lines=context_lines).split(" "),
+            )
+            .decode()
+            .strip()
+            for commit in hashes
+        ]
+    ]
+
+
 def get_commits(
-    repo_path: Optional[str] = None,
     before_ref: str = "origin/main^",
     after_ref: str = "origin/main",
     context_lines: int = 5,
-) -> list[Commit]:
+) -> List[Commit]:
     """Get the list of commits between two references"""
-    # Use current working directory if no repo path is provided
-    repo_path = repo_path or os.getcwd()
-    # Navigate to the repo path
-    os.chdir(repo_path)
     # Get the commit hashes for BEFORE and AFTER
-    before = subprocess.check_output(["git", "rev-parse", before_ref]).decode().strip()
+    before_hash = rev_parse(before_ref)
     subprocess.check_call(["git", "fetch"])
-    after = subprocess.check_output(["git", "rev-parse", after_ref]).decode().strip()
+    after_hash = rev_parse(after_ref)
+
     # Get the list of commit hashes between before and after
-    hashes: list[str] = (
+    hashes: List[str] = (
         subprocess.check_output(
-            ["git", "rev-list", "--no-merges", f"{before}..{after}"],
+            ["git", "rev-list", "--no-merges", f"{before_hash}..{after_hash}"],
         )
         .decode()
         .splitlines()
     )
-    print(hashes)
+
     # Get the diff for each commit in the list
-    outputs: list[str] = [
-        subprocess.check_output(
-            [
-                "git",
-                "--no-pager",
-                "show",
-                "--no-notes",
-                commit,
-                "-s",
-                "--pretty=%cd",
-                "--quiet",
-                "--patch",
-                f"-U{context_lines}",
-            ],
+    date_time_strs, diffs = dt_diffs_from_hashes(hashes, context_lines=context_lines)
+
+    # Return a list of Commit objects
+    return [
+        Commit(
+            commit_hash=commit_hash.strip(),
+            date_time_str=date_time_str,
+            diff=diff,
         )
-        .decode()
-        .strip()
-        for commit in hashes
+        for commit_hash, date_time_str, diff in zip(hashes, date_time_strs, diffs)
     ]
 
-    def _gen():
-        """Generate a list of Commit objects"""
-        for commit_hash, output in zip(hashes, outputs):
-            first_linebreak = output.find("\n")
-            dt = output[:first_linebreak].strip()
-            diff = output[first_linebreak:].strip()
-            yield Commit(
-                commit_hash=commit_hash.strip(),
-                date_time_str=dt.strip(),
-                diff=diff.strip(),
-            )
 
-    return list(_gen())
-
-
-def get_descriptions(commits: list[Commit]) -> list[CommitInfo]:
+def get_descriptions(commits: List[Commit]) -> List[CommitInfo]:
     """Get the descriptions for a list of commits"""
     llm = ChatOpenAI(model="gpt-4", temperature=0.5)
 
@@ -94,11 +91,37 @@ def get_descriptions(commits: list[Commit]) -> list[CommitInfo]:
 
     chain = create_structured_output_chain(CommitDescription, llm, prompt, verbose=True)
 
-    results: list[dict] = chain.batch([commit.dict() for commit in commits])
+    results: List[dict] = chain.batch([commit.dict() for commit in commits])
 
-    outputs: list[CommitDescription] = [result["function"] for result in results]
+    outputs: List[CommitDescription] = [result["function"] for result in results]
 
     return [
         CommitInfo(**commit.dict(), **commit_description.dict())
         for commit, commit_description in zip(commits, outputs)
     ]
+
+
+def get_existing_changelog(before_ref: str) -> Union[str, None]:
+    # Check to see if AI_CHANGELOG.md already exists
+    if os.path.isfile("AI_CHANGELOG.md"):
+        # If so, restore the original version from main
+        subprocess.call(["git", "checkout", before_ref, "--", "AI_CHANGELOG.md"])
+
+        # Get its contents starting from the 3rd line
+        with open("AI_CHANGELOG.md", "r") as existing_changelog:
+            return "\n".join(
+                [line.strip() for line in existing_changelog.readlines()[2:]],
+            ).strip()
+    return None
+
+
+def update_changelog(before_ref: str, new_commits: List[Commit]) -> None:
+    new_commit_infos: List[CommitInfo] = get_descriptions(new_commits)
+    new_descriptions: str = CommitInfo.infos_to_str(new_commit_infos).strip()
+    existing_content = get_existing_changelog(before_ref) or ""
+
+    output = f"# AI CHANGELOG\n{new_descriptions.strip()}\n{existing_content.strip()}".strip()
+
+    # Write the output to AI_CHANGELOG.md
+    with open("AI_CHANGELOG.md", "w") as new_changelog:
+        new_changelog.write(output)

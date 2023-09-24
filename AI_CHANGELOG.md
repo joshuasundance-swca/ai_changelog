@@ -2,13 +2,10 @@
 ## [Added commit message to AI changelog update workflow](https://github.com/joshuasundance-swca/ai_changelog/commit/4d179cbc25eba4dd03d4fbcc74874d732e7002e5)
 Sat Sep 23 21:17:03 2023 -0400
 - This commit includes a change to the AI Changelog GitHub Actions workflow. Specifically, it adds a commit message to the 'Commit changes' step of the workflow.
-
 Sun Sep 24 01:07:48 2023 +0000
 - This commit updates the Python setup and installation steps in the GitHub workflow. The Python version is now set to 3.11, and pip cache is enabled. The step for installing dependencies is renamed to 'Install Python libraries', and a command to install the current directory as a package is added.
-
 Sat Sep 23 20:37:34 2023 -0400
 - This commit refactors the import statements in __main__.py, pydantic_models.py, and utils.py. The changes involve removing the ai_changelog prefix from the import statements, which suggests a possible restructuring of the project's directory.
-
 Sat Sep 23 20:14:34 2023 -0400
 - This commit introduces several improvements to the formatting of the AI Changelog and Python scripts.
 - In the AI Changelog, leading and trailing whitespaces are now being stripped from each line. This ensures that the formatting of the commit descriptions is consistent and neat.
