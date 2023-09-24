@@ -63,9 +63,6 @@ def get_commits(
         .splitlines()
     )
 
-    # Get the diff for each commit in the list
-    date_time_strs, diffs = dt_diffs_from_hashes(hashes, context_lines=context_lines)
-
     # Return a list of Commit objects
     return [
         Commit(
@@ -73,7 +70,10 @@ def get_commits(
             date_time_str=date_time_str,
             diff=diff,
         )
-        for commit_hash, date_time_str, diff in zip(hashes, date_time_strs, diffs)
+        for commit_hash, date_time_str, diff in zip(
+            hashes,
+            *dt_diffs_from_hashes(hashes, context_lines=context_lines),
+        )
     ]
 
 
