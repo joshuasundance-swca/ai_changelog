@@ -53,7 +53,9 @@ def main():
 
         # Get its contents starting from the 3rd line
         with open("AI_CHANGELOG.md", "r") as existing_changelog:
-            existing_content = "\n".join(existing_changelog.readlines()[2:]).strip()
+            existing_content = "\n".join(
+                [line.strip() for line in existing_changelog.readlines()[2:]],
+            ).strip()
 
     # Generate the new AI_CHANGELOG.md
     new_commits: list[Commit] = get_commits(
