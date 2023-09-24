@@ -4,8 +4,8 @@ import argparse
 import os
 import subprocess
 
-from ai_changelog.pydantic_models import Commit, CommitInfo
-from ai_changelog.utils import get_commits, get_descriptions
+from pydantic_models import Commit, CommitInfo
+from utils import get_commits, get_descriptions
 
 
 def main():
