@@ -1,5 +1,8 @@
 # AI CHANGELOG
-## [Improved formatting in AI Changelog and Python scripts](https://github.com/joshuasundance-swca/ai_changelog/commit/fa261d8b74cb1961310704b8c2f5de3f1c9970d7)
+## [Refactored import statements in multiple files.](https://github.com/joshuasundance-swca/ai_changelog/commit/1ac4f402ffab15c61e131eb69494f370e5987902)
+Sat Sep 23 20:37:34 2023 -0400
+- This commit refactors the import statements in __main__.py, pydantic_models.py, and utils.py. The changes involve removing the ai_changelog prefix from the import statements, which suggests a possible restructuring of the project's directory.
+
 Sat Sep 23 20:14:34 2023 -0400
 - This commit introduces several improvements to the formatting of the AI Changelog and Python scripts.
 - In the AI Changelog, leading and trailing whitespaces are now being stripped from each line. This ensures that the formatting of the commit descriptions is consistent and neat.
