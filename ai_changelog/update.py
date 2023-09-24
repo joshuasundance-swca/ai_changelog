@@ -69,7 +69,7 @@ def main():
         new_descriptions: str = CommitInfo.infos_to_str(new_commit_infos).strip()
         existing_content = existing_content.strip() if existing_content else ""
 
-        output = f"# AI CHANGELOG\n\n{new_descriptions}\n\n{existing_content}".strip()
+        output = f"# AI CHANGELOG\n{new_descriptions.strip()}\n\n{existing_content.strip()}".strip()
 
         # Write the output to AI_CHANGELOG.md
         with open("AI_CHANGELOG.md", "w") as new_changelog:
