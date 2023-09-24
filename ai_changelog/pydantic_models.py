@@ -1,3 +1,4 @@
+"""Pydantic models for ai_changelog"""
 import os
 from typing import List, Optional
 
@@ -8,12 +9,16 @@ import subprocess
 
 
 class Commit(BaseModel):
+    """A commit"""
+
     commit_hash: str = Field(..., description="The commit hash")
     date_time_str: str = Field(..., description="Formatted date and time str")
     diff: str = Field(..., description="The diff for the commit")
 
 
 class CommitDescription(BaseModel):
+    """A commit description"""
+
     short_description: str = Field(
         ...,
         description="A technical and concise description of changes implemented in the commit",
@@ -25,8 +30,11 @@ class CommitDescription(BaseModel):
 
 
 class CommitInfo(Commit, CommitDescription):
+    """A commit and its description"""
+
     @staticmethod
     def get_repo_name(repo_path: Optional[str] = None) -> str:
+        """Get the repo name from the remote origin URL"""
         repo_path = repo_path or os.getcwd()
         os.chdir(repo_path)
         return (
@@ -38,13 +46,14 @@ class CommitInfo(Commit, CommitDescription):
         )
 
     def markdown(self, repo_name: Optional[str] = None) -> str:
+        """Generate markdown for the commit info"""
         _repo_name = repo_name or os.environ["REPO_NAME"] or self.get_repo_name()
         if _repo_name is None:
             raise ValueError(
                 "repo_name not given and REPO_NAME not found in environment variables",
             )
         bullet_points = "\n".join(
-            [f"- {line.strip('*- ')}" for line in self.long_description],
+            [f"- {line.strip('*- ').strip()}" for line in self.long_description],
         ).strip()
         return markdown_template.format(
             short_description=self.short_description,
@@ -56,4 +65,5 @@ class CommitInfo(Commit, CommitDescription):
 
     @staticmethod
     def infos_to_str(infos: list["CommitInfo"]) -> str:
-        return "\n\n".join([info.markdown() for info in infos])
+        """Convert a list of CommitInfo objects to a string"""
+        return "\n".join([info.markdown() for info in infos])
