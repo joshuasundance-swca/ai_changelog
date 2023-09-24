@@ -1,5 +1,8 @@
 # AI CHANGELOG
-## [Refactored import statements in multiple files.](https://github.com/joshuasundance-swca/ai_changelog/commit/1ac4f402ffab15c61e131eb69494f370e5987902)
+## [Updated Python setup and installation steps in GitHub workflow](https://github.com/joshuasundance-swca/ai_changelog/commit/4ffdc787bad7321558d255eebde289e57488bb17)
+Sat Sep 23 21:06:45 2023 -0400
+- The Python setup and installation steps in the GitHub workflow have been updated. The Python version has been set to 3.11, and the pip cache has been enabled. The step for installing dependencies has been renamed to 'Install Python libraries', and an additional command has been added to install the current directory as a package.
+
 Sat Sep 23 20:37:34 2023 -0400
 - This commit refactors the import statements in __main__.py, pydantic_models.py, and utils.py. The changes involve removing the ai_changelog prefix from the import statements, which suggests a possible restructuring of the project's directory.
 
