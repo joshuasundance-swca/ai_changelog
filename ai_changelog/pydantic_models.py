@@ -27,6 +27,7 @@ class CommitDescription(BaseModel):
         ...,
         description="Markdown bullet-point formatted list of changes implemented in the commit",
     )
+    # test
 
 
 class CommitInfo(Commit, CommitDescription):
