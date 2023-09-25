@@ -1,4 +1,12 @@
 # AI CHANGELOG
+## [Updated the project version to 0.0.2](https://github.com/joshuasundance-swca/ai_changelog/commit/d05f7c9c14c411f81f3e9b4e157dae990eb77ff3)
+Mon Sep 25 15:16:19 2023 -0400
+- The version of the 'ai_changelog' project has been updated from 0.0.1 to 0.0.2. This change is reflected in the '__init__.py' file, the 'pyproject.toml' file, and the 'bumpver' tool settings.
+## [Updated AI_CHANGELOG.md, __init__.py, and pyproject.toml files](https://github.com/joshuasundance-swca/ai_changelog/commit/fb81aaffc7902b4960ede066299cc73d5804066e)
+Mon Sep 25 15:15:47 2023 -0400
+- Updated AI_CHANGELOG.md to include a newline at the end of the file.
+- Added a version variable to __init__.py in the ai_changelog module.
+- Updated the pyproject.toml file to include the author's name, changed the keywords, added optional dependencies, and included bumpver tool configurations.
 ## [Adjusted changelog parsing start line](https://github.com/joshuasundance-swca/ai_changelog/commit/275a1b053f5cd5f8e6fa8d1787347f3950129325)
 Mon Sep 25 13:23:18 2023 -0400
 - Updated the line from which the AI_CHANGELOG.md file starts being read. Previously, it was starting from the 3rd line, now it starts from the 2nd line.
