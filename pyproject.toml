@@ -6,17 +6,16 @@ build-backend = "setuptools.build_meta"
 name = "ai_changelog"
 version = "0.0.1"
 description = "A Python project that generates AI-based changelogs."
-#authors = [{ name = "Real Python", email = "info@realpython.com" }]
-#authors = ["Your Name <your.email@example.com>"]
-#readme = "README.md"
+authors = ["Joshua Sundance Bailey"]
+readme = "README.md"
 dependencies = [
     "langchain",
     "openai",
     "pydantic",
 ]
-#license = { file = "LICENSE" }
+license = { file = "LICENSE" }
 classifiers = [
-#    "License :: OSI Approved :: MIT License",
+    "License :: OSI Approved :: MIT License",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
 ]
