@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ai_changelog"
-version = "0.0.5"
+version = "0.0.6"
 description = "A Python project that generates AI-based changelogs."
 authors = [{ name = "Joshua Sundance Bailey"}]
 readme = "README.md"
@@ -31,7 +31,7 @@ ai_changelog = "ai_changelog.__main__:main"
 dev = ["pre-commit", "bumpver"]
 
 [tool.bumpver]
-current_version = "0.0.5"
+current_version = "0.0.6"
 version_pattern = "MAJOR.MINOR.PATCH"
 commit_message = "Bump version {old_version} -> {new_version}"
 tag_message = "{new_version}"
