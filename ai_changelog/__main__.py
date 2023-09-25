@@ -3,9 +3,7 @@
 import argparse
 from typing import List
 
-from ai_changelog.pydantic_models import Commit
-from ai_changelog.utils import get_commits
-from ai_changelog.utils import update_changelog
+from ai_changelog import Commit, get_commits, update_changelog
 
 
 def main() -> None:

@@ -1,4 +1,7 @@
 """Pydantic models for ai_changelog"""
+
+from __future__ import annotations
+
 import os
 import subprocess
 from typing import List, Optional
@@ -60,6 +63,6 @@ class CommitInfo(Commit, CommitDescription):
         )
 
     @staticmethod
-    def infos_to_str(infos: List["CommitInfo"]) -> str:
+    def infos_to_str(infos: List[CommitInfo]) -> str:
         """Convert a list of CommitInfo objects to a string"""
         return "\n".join([info.markdown().strip() for info in infos]).strip()
