@@ -111,10 +111,10 @@ def get_existing_changelog(before_ref: str) -> Union[str, None]:
         # If so, restore the original version from main
         subprocess.call(["git", "checkout", before_ref, "--", "AI_CHANGELOG.md"])
 
-        # Get its contents starting from the 3rd line
+        # Get its contents starting from the second line
         with open("AI_CHANGELOG.md", "r") as existing_changelog:
             return "\n".join(
-                [line.strip() for line in existing_changelog.readlines()[2:]],
+                [line.strip() for line in existing_changelog.readlines()[1:]],
             ).strip()
     return None
 
