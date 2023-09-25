@@ -1,4 +1,4 @@
-# AI Changelog
+# ai_changelog
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![python](https://img.shields.io/badge/Python-3.11-3776AB.svg?style=flat&logo=python&logoColor=white)](https://www.python.org)
@@ -33,7 +33,7 @@ ai_changelog origin/main..HEAD  # in a GitHub action to summarize changes in res
 
 ### GitHub Workflow
 
-The [ai_changelog_main_pr.yml](.github/workflows/ai_changelog_main_pr.yml) workflow runs on pushes to `main` and PRs.
+The [ai_changelog_main_pr.yml](.github/workflows/ai_changelog_main_push.yml) workflow runs on pushes to `main`.
 
 It generates summaries for the new commits and appends them to `AI_CHANGELOG.md`. The updated file is then committed back to the PR branch.
 
