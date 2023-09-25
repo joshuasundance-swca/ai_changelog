@@ -1,5 +1,7 @@
 # AI CHANGELOG
-## [Added README.md for AI Changelog project](https://github.com/joshuasundance-swca/ai_changelog/commit/50cd0e426489e69ae8bfa98bc83834b830523e18)
+## [Updated GitHub Actions Workflow](https://github.com/joshuasundance-swca/ai_changelog/commit/1e52ffe64077caa49ff22719e8b35a16c54ae956)
+Mon Sep 25 13:12:38 2023 -0400
+- In this commit, the token used for the Checkout code step in the GitHub Actions workflow (ai_changelog_main_push.yml) was changed from GITHUB_TOKEN to PAT. Additionally, the force push option was removed from the Commit changes step.
 Mon Sep 25 12:47:54 2023 -0400
 - This commit introduces a README.md file for the AI Changelog project. The README provides details about the project, such as its licensing, Python version compatibility, and security measures. It also includes usage instructions for local and GitHub workflow environments, configuration tips, and a list of pending tasks.
 ## [Fixed argument parsing bug in ai_changelog](https://github.com/joshuasundance-swca/ai_changelog/commit/981e5d9ca2d97f43ba265dab079e9c46fd7aa9d7)
