@@ -1,5 +1,16 @@
 # AI CHANGELOG
-## [Added MIT License](https://github.com/joshuasundance-swca/ai_changelog/commit/880246d9aca85c0c07dae5b09c4443fe9a7416a7)
+## [Added README.md for AI Changelog project](https://github.com/joshuasundance-swca/ai_changelog/commit/50cd0e426489e69ae8bfa98bc83834b830523e18)
+Mon Sep 25 12:47:54 2023 -0400
+- This commit introduces a README.md file for the AI Changelog project. The README provides details about the project, such as its licensing, Python version compatibility, and security measures. It also includes usage instructions for local and GitHub workflow environments, configuration tips, and a list of pending tasks.
+## [Fixed argument parsing bug in ai_changelog](https://github.com/joshuasundance-swca/ai_changelog/commit/981e5d9ca2d97f43ba265dab079e9c46fd7aa9d7)
+Mon Sep 25 12:17:57 2023 -0400
+- This commit fixes a bug in the argument parsing section of the ai_changelog script. The bug was causing the script to fail when trying to split the 'ref' argument. The argument name has been corrected from 'ref' to 'refs'.
+## [Refactored AI Changelog Script and Updated Changelog](https://github.com/joshuasundance-swca/ai_changelog/commit/a153a21df0da27dbbdd8fb4bc7bb20d79f0b6a98)
+Mon Sep 25 12:17:03 2023 -0400
+- The commit includes changes in three files: ai_changelog_main_push.yml, AI_CHANGELOG.md, and __main__.py in the ai_changelog directory.
+- In ai_changelog_main_push.yml, the run command for the ai_changelog script was simplified to 'ai_changelog origin/main^..origin/main'.
+- In AI_CHANGELOG.md, a newline character was added at the end of the file.
+- In __main__.py, the argument parser in the main function was refactored. The '--before_ref' and '--after_ref' arguments were replaced with a single 'refs' argument. This argument takes a range of references in the format 'origin/main^..origin/main'. The before_ref and after_ref variables were then set by splitting the 'refs' argument.
 Mon Sep 25 11:31:17 2023 -0400
 - This commit introduces the MIT License to the project. The license grants permission for anyone to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the software. It also includes a disclaimer of warranty.
 Mon Sep 25 14:13:28 2023 +0000
