@@ -2,9 +2,8 @@ name: Publish to PyPI and TestPyPI
 
 on:
   push:
-    branches: [main]
-    paths-ignore:
-      - "AI_CHANGELOG.md"
+    tags:
+      - '*.*.*'
 
 jobs:
   build:
