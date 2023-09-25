@@ -1,4 +1,7 @@
 # AI CHANGELOG
+## [Removed condition for changelog update](https://github.com/joshuasundance-swca/ai_changelog/commit/de2cb250e4511cd9f78d99ddc2cbb6f36e018836)
+Mon Sep 25 17:56:08 2023 -0400
+- This commit removes the condition that restricted the 'update-changelog' job to only run if a pull request was merged. Now, the job will run on every push to the 'AI_CHANGELOG.md' file.
 ## [Bump project version to 0.0.4](https://github.com/joshuasundance-swca/ai_changelog/commit/7b378b121c752d86cbd83afa4d46b9989bd1b122)
 Mon Sep 25 17:42:00 2023 -0400
 - The project's version number has been incremented from 0.0.3 to 0.0.4. This change has been reflected in the project's main __init__.py file, the pyproject.toml file, and the bumpver tool's configuration.
