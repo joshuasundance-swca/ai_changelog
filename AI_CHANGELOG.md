@@ -1,4 +1,7 @@
 # AI CHANGELOG
+## [Bumped up the version from 0.0.2 to 0.0.3](https://github.com/joshuasundance-swca/ai_changelog/commit/8999719b7183627be97bfdaa4e64b40a349e6518)
+Mon Sep 25 15:50:27 2023 -0400
+- This commit includes an update to the version number of the 'ai_changelog' project. The version number has been incremented from 0.0.2 to 0.0.3. This change has been made in the '__init__.py', 'pyproject.toml' files, and the 'tool.bumpver' section of the project.
 ## [Renamed environment names in GitHub actions](https://github.com/joshuasundance-swca/ai_changelog/commit/1e75f6c64f95cfe4b8d2ffe638a172e928bd6ce1)
 Mon Sep 25 15:47:41 2023 -0400
 - This commit changes the 'name' property of the 'environment' in the GitHub action workflows for publishing to PyPI and TestPyPI. The name 'pypi' and 'testpypi' have been replaced with 'release' in both workflows.
