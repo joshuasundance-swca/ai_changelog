@@ -1,9 +1,7 @@
 # AI CHANGELOG
-## [Updated Pydantic version](https://github.com/joshuasundance-swca/ai_changelog/commit/3e2818414cb5859038f6d3a8c6b0f4df51a06372)
-Mon Sep 25 14:08:11 2023 +0000
+## [Updated Pydantic and langchain package versions](https://github.com/joshuasundance-swca/ai_changelog/commit/7d3c8f9d71fa52b44cce31c793d20a02508a8a4c)
+Mon Sep 25 14:13:28 2023 +0000
 - The Pydantic library version was upgraded from 2.3.0 to 2.4.0 in the requirements.txt file.
-## [Updated langchain package version](https://github.com/joshuasundance-swca/ai_changelog/commit/d4793a141b969af39768142419c797ea2763d300)
-Mon Sep 25 14:08:06 2023 +0000
 - The langchain package version in the requirements.txt file has been updated from 0.0.298 to 0.0.300.
 Mon Sep 25 10:07:01 2023 -0400
 - This commit introduces several new files to the GitHub repository. It includes bug report and feature request templates, a pull request template, and a Dependabot configuration file. This will help streamline the issue reporting and feature request process, as well as ensure dependencies are kept up to date.
