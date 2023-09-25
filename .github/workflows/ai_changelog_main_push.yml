@@ -19,7 +19,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.PAT }}
         fetch-depth: 0
 
     - name: Set up Python
@@ -47,5 +47,4 @@ jobs:
       with:
         COMMIT_MESSAGE: "Update AI Changelog"
         file_pattern: "AI_CHANGELOG.md"
-        push_options: --force
       uses: stefanzweifel/git-auto-commit-action@v4
