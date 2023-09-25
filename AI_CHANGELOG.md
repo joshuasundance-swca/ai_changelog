@@ -1,4 +1,11 @@
 # AI CHANGELOG
+## [Added GitHub workflow for Python package publishing](https://github.com/joshuasundance-swca/ai_changelog/commit/dc06aeef1fa8540f8e60c5fdc140ed94c12601f7)
+Mon Sep 25 15:42:42 2023 -0400
+- A new GitHub workflow file has been added to automate the process of publishing the Python package to PyPI and TestPyPI. The workflow triggers on push events to the main branch, excluding changes to the 'AI_CHANGELOG.md' file.
+- The workflow includes several jobs: building the distribution package, publishing the package to PyPI and TestPyPI, signing the distribution with Sigstore, and uploading the signed package to a GitHub Release.
+- The building process uses Python 3.11 and the pypa/build module. The distribution packages are stored as artifacts for later jobs.
+- The publishing process to PyPI only triggers on tag pushes. The publishing to TestPyPI happens regardless of the push event type.
+- The signing process uses the sigstore/gh-action-sigstore-python GitHub action and the signatures are uploaded to a GitHub Release.
 ## [Updated the project version to 0.0.2](https://github.com/joshuasundance-swca/ai_changelog/commit/d05f7c9c14c411f81f3e9b4e157dae990eb77ff3)
 Mon Sep 25 15:16:19 2023 -0400
 - The version of the 'ai_changelog' project has been updated from 0.0.1 to 0.0.2. This change is reflected in the '__init__.py' file, the 'pyproject.toml' file, and the 'bumpver' tool settings.
