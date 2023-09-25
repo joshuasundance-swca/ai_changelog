@@ -1,4 +1,8 @@
 # AI CHANGELOG
+## [Bump project version from 0.0.6 to 0.0.7](https://github.com/joshuasundance-swca/ai_changelog/commit/03cc88f93d847f3fe8be41501a0dbf1083edeb34)
+Mon Sep 25 18:16:15 2023 -0400
+- The project's version number has been updated in three files: ai_changelog/__init__.py, pyproject.toml, and tool.bumpver's current_version.
+- This commit indicates a new version release of the project.
 ## [Updated project version to 0.0.6](https://github.com/joshuasundance-swca/ai_changelog/commit/dd93d4e6a842227f134d70b50ddadec21b2cce72)
 Mon Sep 25 18:07:37 2023 -0400
 - The version of the project has been updated in multiple files including __init__.py, pyproject.toml. The new version is 0.0.6.
