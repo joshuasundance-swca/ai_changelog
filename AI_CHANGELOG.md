@@ -1,4 +1,7 @@
 # AI CHANGELOG
+## [Renamed environment names in GitHub actions](https://github.com/joshuasundance-swca/ai_changelog/commit/1e75f6c64f95cfe4b8d2ffe638a172e928bd6ce1)
+Mon Sep 25 15:47:41 2023 -0400
+- This commit changes the 'name' property of the 'environment' in the GitHub action workflows for publishing to PyPI and TestPyPI. The name 'pypi' and 'testpypi' have been replaced with 'release' in both workflows.
 ## [Added GitHub workflow for Python package publishing](https://github.com/joshuasundance-swca/ai_changelog/commit/dc06aeef1fa8540f8e60c5fdc140ed94c12601f7)
 Mon Sep 25 15:42:42 2023 -0400
 - A new GitHub workflow file has been added to automate the process of publishing the Python package to PyPI and TestPyPI. The workflow triggers on push events to the main branch, excluding changes to the 'AI_CHANGELOG.md' file.
