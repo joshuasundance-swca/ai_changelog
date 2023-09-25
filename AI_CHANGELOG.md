@@ -1,5 +1,8 @@
 # AI CHANGELOG
-## [Refactored get_commits function in ai_changelog/utils.py](https://github.com/joshuasundance-swca/ai_changelog/commit/b2382221dd7feedf3a4f2c4505d369f3413c70b8)
+## [Added GitHub templates and Dependabot configuration, updated AI Changelog workflow](https://github.com/joshuasundance-swca/ai_changelog/commit/7fb7fd5215eb2c7bc4aec800b799cf7c70b297a3)
+Mon Sep 25 10:07:01 2023 -0400
+- This commit introduces several new files to the GitHub repository. It includes bug report and feature request templates, a pull request template, and a Dependabot configuration file. This will help streamline the issue reporting and feature request process, as well as ensure dependencies are kept up to date.
+- Additionally, the AI Changelog workflow has been updated to use the correct parameter names for the ai_changelog command.
 Sun Sep 24 00:56:46 2023 -0400
 - In the get_commits function, the outputs variable was refactored into two separate variables: dts and diffs. This change improves code readability by clearly separating the date time strings and diffs for each commit.
 ## [Refactored CommitInfo class in pydantic_models.py](https://github.com/joshuasundance-swca/ai_changelog/commit/66ed925d62e9e0c2933ed4f31efa4eed2289a89b)
