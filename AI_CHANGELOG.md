@@ -1,4 +1,10 @@
 # AI CHANGELOG
+## [Bump project version to 0.0.4](https://github.com/joshuasundance-swca/ai_changelog/commit/7b378b121c752d86cbd83afa4d46b9989bd1b122)
+Mon Sep 25 17:42:00 2023 -0400
+- The project's version number has been incremented from 0.0.3 to 0.0.4. This change has been reflected in the project's main __init__.py file, the pyproject.toml file, and the bumpver tool's configuration.
+## [Modified GitHub Actions workflow and updated AI_CHANGELOG.md](https://github.com/joshuasundance-swca/ai_changelog/commit/93cec296e86418f26cf1df2c1c36790666145a47)
+Mon Sep 25 17:41:50 2023 -0400
+- In the GitHub Actions workflow, the trigger for the build job was changed. It now only runs on push events that start with 'refs/tags', instead of on all push events to the 'main' branch and any tags. The 'AI_CHANGELOG.md' file was also updated, but the changes were not specified.
 ## [Refactored GitHub workflows for AI Changelog and PyPi publishing](https://github.com/joshuasundance-swca/ai_changelog/commit/640d8401422e768be6c5e8abfa45f0381cde6d43)
 Mon Sep 25 16:00:04 2023 -0400
 - Removed the REPO_NAME environment variable from the AI Changelog workflow as it was not being used.
