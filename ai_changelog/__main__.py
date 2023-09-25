@@ -28,7 +28,7 @@ def main() -> None:
 
     args = parser.parse_args()
 
-    before_ref, after_ref = args.ref.split("..")
+    before_ref, after_ref = args.refs.split("..")
 
     context_lines = args.context_lines
 
