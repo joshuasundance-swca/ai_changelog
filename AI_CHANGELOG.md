@@ -1,4 +1,7 @@
 # AI CHANGELOG
+## [Adjusted changelog parsing start line](https://github.com/joshuasundance-swca/ai_changelog/commit/275a1b053f5cd5f8e6fa8d1787347f3950129325)
+Mon Sep 25 13:23:18 2023 -0400
+- Updated the line from which the AI_CHANGELOG.md file starts being read. Previously, it was starting from the 3rd line, now it starts from the 2nd line.
 ## [Updated GitHub Actions Workflow](https://github.com/joshuasundance-swca/ai_changelog/commit/1e52ffe64077caa49ff22719e8b35a16c54ae956)
 Mon Sep 25 13:12:38 2023 -0400
 - In this commit, the token used for the Checkout code step in the GitHub Actions workflow (ai_changelog_main_push.yml) was changed from GITHUB_TOKEN to PAT. Additionally, the force push option was removed from the Commit changes step.
