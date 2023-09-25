@@ -1,5 +1,7 @@
 # AI CHANGELOG
-## [Updated Pydantic and langchain package versions](https://github.com/joshuasundance-swca/ai_changelog/commit/7d3c8f9d71fa52b44cce31c793d20a02508a8a4c)
+## [Added MIT License](https://github.com/joshuasundance-swca/ai_changelog/commit/880246d9aca85c0c07dae5b09c4443fe9a7416a7)
+Mon Sep 25 11:31:17 2023 -0400
+- This commit introduces the MIT License to the project. The license grants permission for anyone to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the software. It also includes a disclaimer of warranty.
 Mon Sep 25 14:13:28 2023 +0000
 - The Pydantic library version was upgraded from 2.3.0 to 2.4.0 in the requirements.txt file.
 - The langchain package version in the requirements.txt file has been updated from 0.0.298 to 0.0.300.
