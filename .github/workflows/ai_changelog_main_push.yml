@@ -40,7 +40,6 @@ jobs:
         LANGCHAIN_PROJECT: ai-changelog
         LANGCHAIN_ENDPOINT: https://api.smith.langchain.com
         LANGCHAIN_TRACING_V2: true
-        REPO_NAME: ${{ github.repository }}
       run: ai_changelog origin/main^..origin/main
 
     - name: Commit changes
