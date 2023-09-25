@@ -8,18 +8,16 @@ from ai_changelog import Commit, get_commits, update_changelog
 
 def main() -> None:
     """Update the AI_CHANGELOG.md file with the latest changes."""
-    parser = argparse.ArgumentParser(description="Process command line arguments.")
-    parser.add_argument(
-        "--before_ref",
-        type=str,
-        default="origin/main^",
-        help="Reference point before the changes",
+    parser = argparse.ArgumentParser(
+        prog="ai_changelog",
+        description="Process command line arguments.",
+        epilog="http://github.com/joshuasundance-swca/ai_changelog",
     )
     parser.add_argument(
-        "--after_ref",
+        "refs",
         type=str,
-        default="origin/main",
-        help="Reference point after the changes",
+        default="origin/main^..origin/main",
+        help="Reference point before the changes",
     )
     parser.add_argument(
         "--context_lines",
@@ -30,9 +28,7 @@ def main() -> None:
 
     args = parser.parse_args()
 
-    before_ref = args.before_ref
-
-    after_ref = args.after_ref
+    before_ref, after_ref = args.refs.split("..")
 
     context_lines = args.context_lines
 
