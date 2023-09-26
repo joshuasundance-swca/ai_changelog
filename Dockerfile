@@ -24,4 +24,4 @@ RUN python -m pip install --user --no-cache-dir /home/appuser/ai_changelog
 
 WORKDIR /home/appuser/
 
-CMD ["/bin/bash"]
+ENTRYPOINT ["ai_changelog"]

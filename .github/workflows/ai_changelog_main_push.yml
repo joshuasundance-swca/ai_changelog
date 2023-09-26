@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths-ignore:
       - "AI_CHANGELOG.md"
+      - "README.md"
 
 jobs:
   update-changelog:
