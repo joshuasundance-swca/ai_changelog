@@ -1,4 +1,7 @@
 # AI CHANGELOG
+## [Bumped version from 0.0.8 to 0.0.9](https://github.com/joshuasundance-swca/ai_changelog/commit/c267dcd4d5f10831854d905af16693183cfde5dd)
+Mon Sep 25 21:21:54 2023 -0400
+- Updated the version number in __init__.py, pyproject.toml, and the bumpver tool settings from 0.0.8 to 0.0.9. This is likely in preparation for a new release.
 ## [Implemented Docker Hub workflow, updated README, and made changes to AI Changelog and Dockerfile](https://github.com/joshuasundance-swca/ai_changelog/commit/ac03673eb2dbc3fbed2410deb2b8bce4d0334bfb)
 Mon Sep 25 21:19:38 2023 -0400
 - 1. Updated the AI Changelog workflow to ignore changes in the README file.
