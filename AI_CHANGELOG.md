@@ -1,4 +1,10 @@
 # AI CHANGELOG
+## [Implemented Docker Hub workflow, updated README, and made changes to AI Changelog and Dockerfile](https://github.com/joshuasundance-swca/ai_changelog/commit/ac03673eb2dbc3fbed2410deb2b8bce4d0334bfb)
+Mon Sep 25 21:19:38 2023 -0400
+- 1. Updated the AI Changelog workflow to ignore changes in the README file.
+- 2. Created a new workflow for pushing to Docker Hub upon tagging a new release.
+- 3. Updated the Dockerfile to change the default command from bash to running ai_changelog.
+- 4. Made various updates to the README, including changing the Python version badge, expanding on the usage instructions, and updating the TODO list.
 ## [Bumped project version from 0.0.6 to 0.0.7](https://github.com/joshuasundance-swca/ai_changelog/commit/c300f40199f7995f4127d87e86673ef1a5297ad5)
 Mon Sep 25 22:17:16 2023 +0000
 - This commit updates the project's version number from 0.0.6 to 0.0.7. The version number has been updated in three files: ai_changelog/__init__.py, pyproject.toml, and tool.bumpver's current_version. This indicates a new version release of the project.
