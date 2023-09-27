@@ -131,17 +131,27 @@ def get_descriptions(
 ) -> List[CommitInfo]:
     """Get the descriptions for a list of commits"""
     config_dict: dict[str, Any] = {"verbose": verbose}
-
+    if max_concurrency > 0:
+        config_dict["max_concurrency"] = max_concurrency
+    results: List[dict]
     if provider == "openai":
         chain = create_structured_output_chain(
             CommitDescription,
             llm,
             prompt,
         )
+        results = chain.batch(
+            [commit.dict() for commit in commits],
+            RunnableConfig(config_dict),
+        )
     elif provider == "anthropic":
         chain = create_extraction_chain_pydantic(
             CommitDescription,
             llm,
+        )
+        results = chain.batch(
+            [{"input": commit.diff} for commit in commits],
+            RunnableConfig(config_dict),
         )
     else:
         parser = PydanticOutputParser(pydantic_object=CommitDescription)
@@ -149,13 +159,10 @@ def get_descriptions(
         messages.insert(1, HumanMessage(content=parser.get_format_instructions()))
         prompt = ChatPromptTemplate.from_messages(messages)
         chain = prompt | llm | parser
-    if max_concurrency > 0:
-        config_dict["max_concurrency"] = max_concurrency
-
-    results: List[dict] = chain.batch(
-        [commit.dict() for commit in commits],
-        RunnableConfig(config_dict),
-    )
+        results = chain.batch(
+            [commit.dict() for commit in commits],
+            RunnableConfig(config_dict),
+        )
 
     outputs: List[CommitDescription] = [
         result["function"] if provider == "openai" else result for result in results
