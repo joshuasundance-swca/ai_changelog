@@ -30,14 +30,15 @@ class CommitDescription(BaseModel):
     )
 
 
+markdown_template = """
+## [{short_description}](https://github.com/{repo_name}/commit/{commit_hash})
+{date_time_str}
+{bullet_points}
+""".strip()
+
+
 class CommitInfo(Commit, CommitDescription):
     """A commit and its description"""
-
-    markdown_template = """
-    ## [{short_description}](https://github.com/{repo_name}/commit/{commit_hash})
-    {date_time_str}
-    {bullet_points}
-    """.strip()
 
     @staticmethod
     def get_repo_name(repo_path: Optional[str] = None) -> str:
@@ -58,7 +59,7 @@ class CommitInfo(Commit, CommitDescription):
         bullet_points = "\n".join(
             [f"- {line.strip('*- ').strip()}" for line in self.long_description],
         ).strip()
-        return self.markdown_template.format(
+        return markdown_template.format(
             short_description=self.short_description,
             commit_hash=self.commit_hash,
             bullet_points=bullet_points,
