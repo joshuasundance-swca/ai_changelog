@@ -35,6 +35,12 @@ class CommitDescription(BaseModel):
 class CommitInfo(Commit, CommitDescription):
     """A commit and its description"""
 
+    markdown_template = """
+    ## [{short_description}](https://github.com/{repo_name}/commit/{commit_hash})
+    {date_time_str}
+    {bullet_points}
+    """.strip()
+
     @staticmethod
     def get_repo_name(repo_path: Optional[str] = None) -> str:
         """Get the repo name from the remote origin URL"""

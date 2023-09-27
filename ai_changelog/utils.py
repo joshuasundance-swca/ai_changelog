@@ -4,14 +4,39 @@ import os
 import subprocess
 from typing import List, Union
 
+from langchain import hub
 from langchain.chains.openai_functions import (
     create_structured_output_chain,
 )
-from langchain.chat_models import ChatOpenAI
+from langchain.chat_models import ChatOpenAI, ChatAnthropic, ChatAnyscale
+from langchain.chat_models.base import BaseChatModel
 from langchain.prompts import ChatPromptTemplate
 
 from ai_changelog.pydantic_models import CommitDescription, CommitInfo, Commit
-from ai_changelog.string_templates import sys_msg, hum_msg
+
+
+def get_model(
+    provider: str,
+    model: str,
+    temperature: float = 0.5,
+    max_tokens: int = 1000,
+) -> BaseChatModel:
+    provider_model_dict = {
+        "openai": ChatOpenAI,
+        "anthropic": ChatAnthropic,
+        "anyscale": ChatAnyscale,
+    }
+    try:
+        model_class = provider_model_dict[provider]
+    except KeyError as e:
+        raise ValueError(f"Unknown provider {provider}") from e
+    return model_class(model=model, temperature=temperature, max_tokens=max_tokens)
+
+
+def get_prompt(
+    hub_prompt_str: str = "joshuasundance/ai_changelog",
+) -> ChatPromptTemplate:
+    return hub.pull(hub_prompt_str)
 
 
 def get_timestamp(commit_hash: str, format_str: str = "%cD") -> str:
@@ -81,19 +106,20 @@ def get_commits(
     ]
 
 
-def get_descriptions(commits: List[Commit]) -> List[CommitInfo]:
+def get_descriptions(
+    commits: List[Commit],
+    llm: BaseChatModel,
+    prompt: ChatPromptTemplate,
+    verbose: bool = True,
+) -> List[CommitInfo]:
     """Get the descriptions for a list of commits"""
-    llm = ChatOpenAI(model="gpt-4", temperature=0.5)
 
-    prompt = ChatPromptTemplate.from_messages(
-        [
-            ("system", sys_msg),
-            ("human", hum_msg),
-            ("human", "Tip: Make sure to answer in the correct format"),
-        ],
+    chain = create_structured_output_chain(
+        CommitDescription,
+        llm,
+        prompt,
+        verbose=verbose,
     )
-
-    chain = create_structured_output_chain(CommitDescription, llm, prompt, verbose=True)
 
     results: List[dict] = chain.batch([commit.dict() for commit in commits])
 
@@ -119,8 +145,19 @@ def get_existing_changelog(before_ref: str) -> Union[str, None]:
     return None
 
 
-def update_changelog(before_ref: str, new_commits: List[Commit]) -> None:
-    new_commit_infos: List[CommitInfo] = get_descriptions(new_commits)
+def update_changelog(
+    before_ref: str,
+    new_commits: List[Commit],
+    llm: BaseChatModel,
+    prompt: ChatPromptTemplate,
+    verbose: bool = True,
+) -> None:
+    new_commit_infos: List[CommitInfo] = get_descriptions(
+        new_commits,
+        llm,
+        prompt,
+        verbose=verbose,
+    )
     new_descriptions: str = CommitInfo.infos_to_str(new_commit_infos).strip()
     existing_content = get_existing_changelog(before_ref) or ""
 
