@@ -11,7 +11,7 @@ from langchain.chat_models import ChatOpenAI, ChatAnthropic, ChatAnyscale
 from langchain.chat_models.base import BaseChatModel
 from langchain.output_parsers import PydanticOutputParser
 from langchain.prompts import ChatPromptTemplate
-from langchain.schema import SystemMessage
+from langchain.schema import HumanMessage
 from langchain.schema.runnable import RunnableConfig
 
 from ai_changelog.pydantic_models import CommitDescription, CommitInfo, Commit
@@ -139,7 +139,7 @@ def get_descriptions(
     else:
         parser = PydanticOutputParser(pydantic_object=CommitDescription)
         messages = prompt.messages
-        messages.insert(1, SystemMessage(content=parser.get_format_instructions()))
+        messages.insert(1, HumanMessage(content=parser.get_format_instructions()))
         prompt = ChatPromptTemplate.from_messages(messages)
         chain = prompt | llm | parser
     if max_concurrency > 0:
