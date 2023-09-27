@@ -18,45 +18,40 @@ def main() -> None:
         "refs",
         type=str,
         default="origin/main^..origin/main",
-        help="Reference point before the changes",
+        help="Reference comparison with standard git syntax",
     )
+
     parser.add_argument(
-        "provider",
+        "--provider",
         type=str,
         default="openai",
         help="Model API provider",
+        choices=["openai", "anthropic", "anyscale"],
     )
     parser.add_argument(
-        "model",
+        "--model",
         type=str,
         default="gpt-4",
         help="Model name",
     )
     parser.add_argument(
-        "temperature",
+        "--temperature",
         type=float,
         default=0.5,
         help="Model temperature",
     )
     parser.add_argument(
-        "Max tokens",
+        "--max_tokens",
         type=int,
         default=500,
         help="Max tokens in output",
     )
     parser.add_argument(
-        "hub_prompt_str",
+        "--hub_prompt",
         type=str,
         default="joshuasundance/ai_changelog",
         help="Prompt to pull from LangChain Hub",
     )
-    parser.add_argument(
-        "refs",
-        type=str,
-        default="origin/main^..origin/main",
-        help="Reference comparison with standard git syntax",
-    )
-
     parser.add_argument(
         "--context_lines",
         type=int,
