@@ -75,7 +75,7 @@ def main() -> None:
     model = args.model
     temperature = args.temperature
     max_tokens = args.max_tokens
-    hub_prompt_str = args.hub_prompt_str
+    hub_prompt_str = args.hub_prompt
     verbose = args.verbose
 
     # Generate the new AI_CHANGELOG.md
