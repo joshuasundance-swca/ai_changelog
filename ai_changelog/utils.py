@@ -8,11 +8,12 @@ from langchain import hub
 from langchain.chains.openai_functions import (
     create_structured_output_chain,
 )
-from langchain.output_parsers import PydanticOutputParser
-from langchain.schema.runnable import RunnableConfig
 from langchain.chat_models import ChatOpenAI, ChatAnthropic, ChatAnyscale
 from langchain.chat_models.base import BaseChatModel
+from langchain.output_parsers import PydanticOutputParser
 from langchain.prompts import ChatPromptTemplate
+from langchain.schema import HumanMessage
+from langchain.schema.runnable import RunnableConfig
 
 from ai_changelog.pydantic_models import CommitDescription, CommitInfo, Commit
 
@@ -116,22 +117,27 @@ def get_descriptions(
     verbose: bool = True,
 ) -> List[CommitInfo]:
     """Get the descriptions for a list of commits"""
-    chain = (
-        create_structured_output_chain(
+    if provider == "openai":
+        chain = create_structured_output_chain(
             CommitDescription,
             llm,
             prompt,
         )
-        if provider == "openai"
-        else (prompt | llm | PydanticOutputParser(pydantic_object=CommitDescription))
-    )
+    else:
+        parser = PydanticOutputParser(pydantic_object=CommitDescription)
+        prompt = ChatPromptTemplate.from_messages(
+            prompt.messages + [HumanMessage(content=parser.get_format_instructions())],
+        )
+        chain = prompt | llm | parser
 
     results: List[dict] = chain.batch(
         [commit.dict() for commit in commits],
         RunnableConfig({"verbose": verbose}),
     )
 
-    outputs: List[CommitDescription] = [result["function"] for result in results]
+    outputs: List[CommitDescription] = [
+        result["function"] if provider == "openai" else result for result in results
+    ]
 
     return [
         CommitInfo(**commit.dict(), **commit_description.dict())
