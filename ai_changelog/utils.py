@@ -150,14 +150,17 @@ def get_descriptions(
     ]
 
 
-def get_existing_changelog(before_ref: str) -> Union[str, None]:
-    # Check to see if AI_CHANGELOG.md already exists
-    if os.path.isfile("AI_CHANGELOG.md"):
+def get_existing_changelog(
+    before_ref: str,
+    output_file: str = "AI_CHANGELOG.md",
+) -> Union[str, None]:
+    # Check to see if output_file already exists
+    if os.path.isfile(output_file):
         # If so, restore the original version from main
-        subprocess.call(["git", "checkout", before_ref, "--", "AI_CHANGELOG.md"])
+        subprocess.call(["git", "checkout", before_ref, "--", output_file])
 
         # Get its contents starting from the second line
-        with open("AI_CHANGELOG.md", "r") as existing_changelog:
+        with open(output_file, "r") as existing_changelog:
             return "\n".join(
                 [line.strip() for line in existing_changelog.readlines()[1:]],
             ).strip()
@@ -172,6 +175,7 @@ def update_changelog(
     prompt: ChatPromptTemplate,
     verbose: bool = True,
     max_concurrency: int = 0,
+    output_file: str = "AI_CHANGELOG.md",
 ) -> None:
     new_commit_infos: List[CommitInfo] = get_descriptions(
         new_commits,
@@ -182,10 +186,10 @@ def update_changelog(
         max_concurrency,
     )
     new_descriptions: str = CommitInfo.infos_to_str(new_commit_infos).strip()
-    existing_content = get_existing_changelog(before_ref) or ""
+    existing_content = get_existing_changelog(before_ref, output_file) or ""
 
     output = f"# AI CHANGELOG\n{new_descriptions.strip()}\n{existing_content.strip()}".strip()
 
     # Write the output to AI_CHANGELOG.md
-    with open("AI_CHANGELOG.md", "w") as new_changelog:
+    with open(output_file, "w") as new_changelog:
         new_changelog.write(output)

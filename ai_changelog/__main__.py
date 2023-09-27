@@ -73,6 +73,14 @@ def main() -> None:
         action="store_true",
     )
 
+    parser.add_argument(
+        "-o",
+        "--output_file",
+        type=str,
+        help="Output file",
+        default="AI_CHANGELOG.md",
+    )
+
     args = parser.parse_args()
 
     before_ref, after_ref = args.refs.split("..")
@@ -85,6 +93,7 @@ def main() -> None:
     hub_prompt_str = args.hub_prompt
     verbose = args.verbose
     max_concurrency = args.max_concurrency
+    output_file = args.output
 
     # Generate the new AI_CHANGELOG.md
     new_commits: List[Commit] = get_commits(
@@ -104,6 +113,7 @@ def main() -> None:
             prompt=prompt,
             verbose=verbose,
             max_concurrency=max_concurrency,
+            output_file=output_file,
         )
 
 
