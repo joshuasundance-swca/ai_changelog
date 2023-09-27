@@ -1,4 +1,20 @@
 # AI CHANGELOG
+## [Adjusted format of AI changelog](https://github.com/joshuasundance-swca/ai_changelog/commit/d12d4b911edd5c77325a49d092dceecffcff7eba)
+Wed Sep 27 18:53:08 2023 -0400
+- The output string in the update_changelog function in ai_changelog/utils.py was modified to include a newline character at the end of the existing content. This change ensures that the AI changelog is formatted correctly when new commit descriptions are added.
+## [Refactored output file argument name in main function](https://github.com/joshuasundance-swca/ai_changelog/commit/80476ed0247b0cd8421a300ee21d69ef142405fa)
+Wed Sep 27 17:25:39 2023 -0400
+- In the main function, the argument for the output file has been renamed. Previously, it was referred to as 'output', but it has now been renamed to 'output_file' for better clarity and understanding. This change helps in making the code more readable and self-explanatory.
+## [Renamed 'get_model' to 'get_llm' and updated references](https://github.com/joshuasundance-swca/ai_changelog/commit/f58faf5a129820aa16be21678616aab4f4e303c2)
+Wed Sep 27 17:23:40 2023 -0400
+- The function 'get_model' in ai_changelog/utils.py has been renamed to 'get_llm'.
+- All references to 'get_model' in ai_changelog/__main__.py have been updated to 'get_llm'.
+- The variable 'model' in ai_changelog/__main__.py has been renamed to 'llm' to reflect this change.
+## [Added output file option to AI changelog generation script](https://github.com/joshuasundance-swca/ai_changelog/commit/6a319c8c3c750513c7d3f2a69a11182c56e0161c)
+Wed Sep 27 17:22:47 2023 -0400
+- This commit introduces an option to specify the output file for the AI changelog generation script. The '-o' or '--output_file' argument has been added to the argument parser in 'ai_changelog/__main__.py'.
+- The 'get_existing_changelog' and 'update_changelog' functions in 'ai_changelog/utils.py' have been updated to accept the 'output_file' as an argument and use it instead of the hardcoded 'AI_CHANGELOG.md'.
+- This change allows users to specify the output file and makes the script more flexible.
 ## [Bumped version from 0.0.9 to 0.0.10](https://github.com/joshuasundance-swca/ai_changelog/commit/67f2ec854bf55e33a638b81754b52c3aca57a3ff)
 Wed Sep 27 15:06:26 2023 -0400
 - Updated the version number in multiple files from 0.0.9 to 0.0.10. The files impacted are __init__.py, pyproject.toml, and tool.bumpver in the project configuration.
