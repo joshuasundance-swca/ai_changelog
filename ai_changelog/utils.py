@@ -4,15 +4,17 @@ import subprocess
 from typing import Any, List, Union
 
 from langchain import hub
+from langchain.chains import create_extraction_chain_pydantic
 from langchain.chains.openai_functions import (
     create_structured_output_chain,
 )
-from langchain.chat_models import ChatOpenAI, ChatAnthropic, ChatAnyscale
+from langchain.chat_models import ChatOpenAI, ChatAnyscale
 from langchain.chat_models.base import BaseChatModel
 from langchain.output_parsers import PydanticOutputParser
 from langchain.prompts import ChatPromptTemplate
 from langchain.schema import HumanMessage
 from langchain.schema.runnable import RunnableConfig
+from langchain_experimental.llms.anthropic_functions import AnthropicFunctions
 
 from ai_changelog.pydantic_models import CommitDescription, CommitInfo, Commit
 from ai_changelog.string_templates import hum_msg, sys_msg
@@ -26,7 +28,7 @@ def get_llm(
 ) -> BaseChatModel:
     provider_model_dict = {
         "openai": ChatOpenAI,
-        "anthropic": ChatAnthropic,
+        "anthropic": AnthropicFunctions,
         "anyscale": ChatAnyscale,
     }
     try:
@@ -135,6 +137,11 @@ def get_descriptions(
             CommitDescription,
             llm,
             prompt,
+        )
+    elif provider == "anthropic":
+        chain = create_extraction_chain_pydantic(
+            CommitDescription,
+            llm,
         )
     else:
         parser = PydanticOutputParser(pydantic_object=CommitDescription)
