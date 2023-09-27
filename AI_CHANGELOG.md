@@ -1,4 +1,7 @@
 # AI CHANGELOG
+## [Updated file exclusion in pre-commit configuration](https://github.com/joshuasundance-swca/ai_changelog/commit/dcd6204393ab0424fc0cb478aa58d808efbb2fef)
+Wed Sep 27 18:56:58 2023 -0400
+- The .pre-commit-config.yaml file was modified to exclude AI_CHANGELOG.md instead of .idea and docs directories. The change ensures that the specified file is not included during pre-commit checks.
 ## [Adjusted format of AI changelog](https://github.com/joshuasundance-swca/ai_changelog/commit/d12d4b911edd5c77325a49d092dceecffcff7eba)
 Wed Sep 27 18:53:08 2023 -0400
 - The output string in the update_changelog function in ai_changelog/utils.py was modified to include a newline character at the end of the existing content. This change ensures that the AI changelog is formatted correctly when new commit descriptions are added.
