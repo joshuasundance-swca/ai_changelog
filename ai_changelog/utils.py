@@ -1,5 +1,4 @@
 """Utility functions for the ai_changelog package"""
-
 import os
 import subprocess
 from typing import Any, List, Union
@@ -12,10 +11,11 @@ from langchain.chat_models import ChatOpenAI, ChatAnthropic, ChatAnyscale
 from langchain.chat_models.base import BaseChatModel
 from langchain.output_parsers import PydanticOutputParser
 from langchain.prompts import ChatPromptTemplate
-from langchain.schema import HumanMessage
+from langchain.schema import SystemMessage
 from langchain.schema.runnable import RunnableConfig
 
 from ai_changelog.pydantic_models import CommitDescription, CommitInfo, Commit
+from ai_changelog.string_templates import hum_msg, sys_msg
 
 
 def get_llm(
@@ -39,7 +39,17 @@ def get_llm(
 def get_prompt(
     hub_prompt_str: str = "joshuasundance/ai_changelog",
 ) -> ChatPromptTemplate:
-    return hub.pull(hub_prompt_str)
+    return (
+        ChatPromptTemplate.from_messages(
+            [
+                ("system", sys_msg),
+                ("human", hum_msg),
+                ("human", "Tip: Make sure to answer in the correct format"),
+            ],
+        )
+        if hub_prompt_str == "joshuasundance/ai_changelog"
+        else hub.pull(hub_prompt_str)
+    )
 
 
 def get_timestamp(commit_hash: str, format_str: str = "%cD") -> str:
@@ -128,9 +138,9 @@ def get_descriptions(
         )
     else:
         parser = PydanticOutputParser(pydantic_object=CommitDescription)
-        prompt = ChatPromptTemplate.from_messages(
-            prompt.messages + [HumanMessage(content=parser.get_format_instructions())],
-        )
+        messages = prompt.messages
+        messages.insert(1, SystemMessage(content=parser.get_format_instructions()))
+        prompt = ChatPromptTemplate.from_messages(messages)
         chain = prompt | llm | parser
     if max_concurrency > 0:
         config_dict["max_concurrency"] = max_concurrency
