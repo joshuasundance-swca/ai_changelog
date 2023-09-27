@@ -1,4 +1,7 @@
 # AI CHANGELOG
+## [Bumped version from 0.0.9 to 0.0.10](https://github.com/joshuasundance-swca/ai_changelog/commit/67f2ec854bf55e33a638b81754b52c3aca57a3ff)
+Wed Sep 27 15:06:26 2023 -0400
+- Updated the version number in multiple files from 0.0.9 to 0.0.10. The files impacted are __init__.py, pyproject.toml, and tool.bumpver in the project configuration.
 ## [Refactor markdown_template in CommitInfo class](https://github.com/joshuasundance-swca/ai_changelog/commit/df0ea45e47fde46f6513c5fe889501a53488a797)
 Wed Sep 27 14:51:06 2023 -0400
 - The markdown_template string was moved from being a class attribute to a module-level constant in the pydantic_models.py file. This change was made to improve the structure of the code and to ensure that the markdown_template string is only defined once and reused, as it doesn't need to be an instance variable.
