@@ -4,7 +4,7 @@ import argparse
 from typing import List
 
 from ai_changelog import Commit, get_commits, update_changelog
-from ai_changelog.utils import get_prompt, get_model
+from ai_changelog.utils import get_prompt, get_llm
 
 
 def main() -> None:
@@ -73,18 +73,27 @@ def main() -> None:
         action="store_true",
     )
 
+    parser.add_argument(
+        "-o",
+        "--output_file",
+        type=str,
+        help="Output file",
+        default="AI_CHANGELOG.md",
+    )
+
     args = parser.parse_args()
 
     before_ref, after_ref = args.refs.split("..")
 
     context_lines = args.context_lines
     provider = args.provider
-    model = args.model
+    llm = args.model
     temperature = args.temperature
     max_tokens = args.max_tokens
     hub_prompt_str = args.hub_prompt
     verbose = args.verbose
     max_concurrency = args.max_concurrency
+    output_file = args.output_file
 
     # Generate the new AI_CHANGELOG.md
     new_commits: List[Commit] = get_commits(
@@ -94,16 +103,17 @@ def main() -> None:
     )
 
     if new_commits:
-        model = get_model(provider, model, temperature, max_tokens)
+        llm = get_llm(provider, llm, temperature, max_tokens)
         prompt = get_prompt(hub_prompt_str)
         update_changelog(
             before_ref=before_ref,
             new_commits=new_commits,
             provider=provider,
-            llm=model,
+            llm=llm,
             prompt=prompt,
             verbose=verbose,
             max_concurrency=max_concurrency,
+            output_file=output_file,
         )
 
 
