@@ -91,6 +91,7 @@ def main() -> None:
         update_changelog(
             before_ref=before_ref,
             new_commits=new_commits,
+            provider=provider,
             llm=model,
             prompt=prompt,
             verbose=verbose,

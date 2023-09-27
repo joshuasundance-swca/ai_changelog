@@ -8,6 +8,8 @@ from langchain import hub
 from langchain.chains.openai_functions import (
     create_structured_output_chain,
 )
+from langchain.output_parsers import PydanticOutputParser
+from langchain.schema.runnable import RunnableConfig
 from langchain.chat_models import ChatOpenAI, ChatAnthropic, ChatAnyscale
 from langchain.chat_models.base import BaseChatModel
 from langchain.prompts import ChatPromptTemplate
@@ -108,20 +110,26 @@ def get_commits(
 
 def get_descriptions(
     commits: List[Commit],
+    provider: str,
     llm: BaseChatModel,
     prompt: ChatPromptTemplate,
     verbose: bool = True,
 ) -> List[CommitInfo]:
     """Get the descriptions for a list of commits"""
-
-    chain = create_structured_output_chain(
-        CommitDescription,
-        llm,
-        prompt,
-        verbose=verbose,
+    chain = (
+        create_structured_output_chain(
+            CommitDescription,
+            llm,
+            prompt,
+        )
+        if provider == "openai"
+        else (prompt | llm | PydanticOutputParser(pydantic_object=CommitDescription))
     )
 
-    results: List[dict] = chain.batch([commit.dict() for commit in commits])
+    results: List[dict] = chain.batch(
+        [commit.dict() for commit in commits],
+        RunnableConfig({"verbose": verbose}),
+    )
 
     outputs: List[CommitDescription] = [result["function"] for result in results]
 
@@ -148,12 +156,14 @@ def get_existing_changelog(before_ref: str) -> Union[str, None]:
 def update_changelog(
     before_ref: str,
     new_commits: List[Commit],
+    provider: str,
     llm: BaseChatModel,
     prompt: ChatPromptTemplate,
     verbose: bool = True,
 ) -> None:
     new_commit_infos: List[CommitInfo] = get_descriptions(
         new_commits,
+        provider,
         llm,
         prompt,
         verbose=verbose,
