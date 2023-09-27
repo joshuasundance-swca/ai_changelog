@@ -93,7 +93,7 @@ def main() -> None:
     hub_prompt_str = args.hub_prompt
     verbose = args.verbose
     max_concurrency = args.max_concurrency
-    output_file = args.output
+    output_file = args.output_file
 
     # Generate the new AI_CHANGELOG.md
     new_commits: List[Commit] = get_commits(
