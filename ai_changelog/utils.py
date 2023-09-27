@@ -188,7 +188,7 @@ def update_changelog(
     new_descriptions: str = CommitInfo.infos_to_str(new_commit_infos).strip()
     existing_content = get_existing_changelog(before_ref, output_file) or ""
 
-    output = f"# AI CHANGELOG\n{new_descriptions.strip()}\n{existing_content.strip()}".strip()
+    output = f"# AI CHANGELOG\n{new_descriptions.strip()}\n{existing_content.strip()}\n".strip()
 
     # Write the output to AI_CHANGELOG.md
     with open(output_file, "w") as new_changelog:
