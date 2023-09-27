@@ -60,6 +60,13 @@ def main() -> None:
     )
 
     parser.add_argument(
+        "--max_concurrency",
+        type=int,
+        default=0,
+        help="Number of concurrent connections to llm provider (0 means no limit)",
+    )
+
+    parser.add_argument(
         "-v",
         "--verbose",
         help="Run LangChain in verbose mode",
@@ -77,6 +84,7 @@ def main() -> None:
     max_tokens = args.max_tokens
     hub_prompt_str = args.hub_prompt
     verbose = args.verbose
+    max_concurrency = args.max_concurrency
 
     # Generate the new AI_CHANGELOG.md
     new_commits: List[Commit] = get_commits(
@@ -95,6 +103,7 @@ def main() -> None:
             llm=model,
             prompt=prompt,
             verbose=verbose,
+            max_concurrency=max_concurrency,
         )
 
 

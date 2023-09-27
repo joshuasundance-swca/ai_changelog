@@ -2,7 +2,7 @@
 
 import os
 import subprocess
-from typing import List, Union
+from typing import Any, List, Union
 
 from langchain import hub
 from langchain.chains.openai_functions import (
@@ -115,8 +115,11 @@ def get_descriptions(
     llm: BaseChatModel,
     prompt: ChatPromptTemplate,
     verbose: bool = True,
+    max_concurrency: int = 0,
 ) -> List[CommitInfo]:
     """Get the descriptions for a list of commits"""
+    config_dict: dict[str, Any] = {"verbose": verbose}
+
     if provider == "openai":
         chain = create_structured_output_chain(
             CommitDescription,
@@ -129,10 +132,12 @@ def get_descriptions(
             prompt.messages + [HumanMessage(content=parser.get_format_instructions())],
         )
         chain = prompt | llm | parser
+    if max_concurrency > 0:
+        config_dict["max_concurrency"] = max_concurrency
 
     results: List[dict] = chain.batch(
         [commit.dict() for commit in commits],
-        RunnableConfig({"verbose": verbose}),
+        RunnableConfig(config_dict),
     )
 
     outputs: List[CommitDescription] = [
@@ -166,13 +171,15 @@ def update_changelog(
     llm: BaseChatModel,
     prompt: ChatPromptTemplate,
     verbose: bool = True,
+    max_concurrency: int = 0,
 ) -> None:
     new_commit_infos: List[CommitInfo] = get_descriptions(
         new_commits,
         provider,
         llm,
         prompt,
-        verbose=verbose,
+        verbose,
+        max_concurrency,
     )
     new_descriptions: str = CommitInfo.infos_to_str(new_commit_infos).strip()
     existing_content = get_existing_changelog(before_ref) or ""
