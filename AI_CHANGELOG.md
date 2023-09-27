@@ -1,4 +1,49 @@
 # AI CHANGELOG
+## [Refactor markdown_template in CommitInfo class](https://github.com/joshuasundance-swca/ai_changelog/commit/df0ea45e47fde46f6513c5fe889501a53488a797)
+Wed Sep 27 14:51:06 2023 -0400
+- The markdown_template string was moved from being a class attribute to a module-level constant in the pydantic_models.py file. This change was made to improve the structure of the code and to ensure that the markdown_template string is only defined once and reused, as it doesn't need to be an instance variable.
+## [Added max_concurrency argument to ai_changelog](https://github.com/joshuasundance-swca/ai_changelog/commit/d4db141f05cbb573081d38768b1073d434994f31)
+Wed Sep 27 14:48:10 2023 -0400
+- Added a new argument `--max_concurrency` to the main function in `ai_changelog/__main__.py`. This argument sets the maximum number of concurrent connections to the llm provider. A default value of 0 implies no limit.
+- In `ai_changelog/utils.py`, updated the `get_descriptions` and `update_changelog` functions to accept `max_concurrency` as an argument. This value is then passed to the `RunnableConfig` in the `chain.batch` call.
+## [Added anthropic to requirements](https://github.com/joshuasundance-swca/ai_changelog/commit/dad3d562a7ab6b9dbb0eceabf05082bb3235756c)
+Wed Sep 27 14:33:11 2023 -0400
+- The anthropic package version 0.3.11 was added to the requirements.txt file. This change implies that this package is now a dependency for the project.
+## [Refactored get_descriptions function in ai_changelog/utils.py](https://github.com/joshuasundance-swca/ai_changelog/commit/144cd8ce2c6a18c4ee155e51f559c5ef2ce3364f)
+Wed Sep 27 14:25:31 2023 -0400
+- In this commit, the get_descriptions function in ai_changelog/utils.py was refactored. The logic for creating the chain for getting commit descriptions was updated based on the provider. If the provider is 'openai', it uses the create_structured_output_chain function. Otherwise, it creates a new PydanticOutputParser object and a new ChatPromptTemplate object before creating the chain. The way outputs are extracted from the results was also modified to account for these changes.
+## [Added provider support to commit description generation](https://github.com/joshuasundance-swca/ai_changelog/commit/55ca48dee8b878c971becd0d843307b3a7d5867e)
+Wed Sep 27 14:14:21 2023 -0400
+- The commit introduces the ability to specify a provider when generating descriptions for a list of commits. Depending on the provider, a different output chain is used to fetch and parse the descriptions. The 'provider' parameter was also added to the 'get_descriptions' and 'update_changelog' functions. Additionally, the commit includes the import and usage of the 'PydanticOutputParser' and 'RunnableConfig' classes, which are used when the provider is not 'openai'.
+## [Added global git configuration to Dockerfile](https://github.com/joshuasundance-swca/ai_changelog/commit/7ec97dafe39aee4bcb27d6772c297c3351f6cd64)
+Wed Sep 27 13:50:43 2023 -0400
+- In the Dockerfile, a new git configuration has been added. This configuration sets the global 'safe.directory' to '*'. This change ensures that all directories are considered safe by git.
+## [Updated langchainhub version](https://github.com/joshuasundance-swca/ai_changelog/commit/2e6db8e0edc475b4f67575c62cf10c1db4c34b41)
+Wed Sep 27 13:47:50 2023 -0400
+- The version of the langchainhub dependency in the requirements.txt file has been updated from 0.0.303 to 0.1.13.
+## [Added langchainhub to requirements](https://github.com/joshuasundance-swca/ai_changelog/commit/6e5333f4b09425e19857aef0cbdd9f64494e88cd)
+Wed Sep 27 13:47:05 2023 -0400
+- A new requirement 'langchainhub' has been added to the requirements.txt file. The version specified for this new requirement is 0.0.303.
+## [Renamed 'hub_prompt_str' argument to 'hub_prompt'](https://github.com/joshuasundance-swca/ai_changelog/commit/5b6b4b4902e5f1efa384b57aeb11808dbad6e940)
+Wed Sep 27 13:36:21 2023 -0400
+- In the main function of ai_changelog/__main__.py, the argument 'hub_prompt_str' has been renamed to 'hub_prompt'. This change is likely made to improve code readability and maintain a consistent naming convention.
+## [Refactored command line arguments in ai_changelog/__main__.py](https://github.com/joshuasundance-swca/ai_changelog/commit/f653fa1f06cb3735a36a77b82b554f70bbf6fe59)
+Wed Sep 27 13:34:23 2023 -0400
+- This commit modifies the command line arguments in the ai_changelog/__main__.py script. Changes include:
+- 1. Updated the help text for the 'refs' argument to better reflect its purpose.
+- 2. Changed the 'provider', 'model', 'temperature', 'max_tokens', and 'hub_prompt_str' arguments to optional by adding '--' before their names.
+- 3. Added choice validation to the 'provider' argument, limiting the options to 'openai', 'anthropic', and 'anyscale'.
+- 4. Removed the duplicate 'refs' argument.
+## [Refactor: Removed redundant import and updated markdown template usage](https://github.com/joshuasundance-swca/ai_changelog/commit/e71132c6f33bd4f7ba099849ebbd102db1a42111)
+Wed Sep 27 13:30:33 2023 -0400
+- This commit removes an unnecessary import statement from 'ai_changelog.pydantic_models.py'. The 'markdown_template' import from 'ai_changelog.string_templates' has been removed as it's no longer in use.
+- Additionally, the usage of 'markdown_template' in the 'CommitInfo' class has been updated. Instead of calling 'markdown_template.format()', it now calls 'self.markdown_template.format()'. This change indicates that the markdown template is now an instance variable of the 'CommitInfo' class.
+## [Enhanced `ai_changelog` module with new features and refactored existing code](https://github.com/joshuasundance-swca/ai_changelog/commit/80a504a7e0f7fc46544edd7badaaf591025589ad)
+Wed Sep 27 13:28:14 2023 -0400
+- This commit introduces several enhancements and changes to the `ai_changelog` module. The `__main__.py` file has been updated to include more command-line arguments for the `main` function, allowing more granular control over the model and its parameters. This includes arguments for the model API provider, model name, model temperature, maximum tokens in output, and verbosity.
+- The `pydantic_models.py` file has been updated to include a markdown template in the `CommitInfo` class, providing a standard format for commit information.
+- A significant change is the deletion of the `string_templates.py` file, indicating a shift in the way strings are handled in the module.
+- Finally, the `utils.py` file has seen extensive updates, including the addition of `get_model` and `get_prompt` functions, which return a chat model and a chat prompt template respectively. The `get_descriptions` and `update_changelog` functions have also been updated to accommodate these changes.
 ## [Bumped version from 0.0.8 to 0.0.9](https://github.com/joshuasundance-swca/ai_changelog/commit/c267dcd4d5f10831854d905af16693183cfde5dd)
 Mon Sep 25 21:21:54 2023 -0400
 - Updated the version number in __init__.py, pyproject.toml, and the bumpver tool settings from 0.0.8 to 0.0.9. This is likely in preparation for a new release.
