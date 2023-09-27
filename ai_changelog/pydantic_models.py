@@ -8,8 +8,6 @@ from typing import List, Optional
 
 from langchain.pydantic_v1 import BaseModel, Field
 
-from ai_changelog.string_templates import markdown_template
-
 
 class Commit(BaseModel):
     """A commit"""
@@ -60,7 +58,7 @@ class CommitInfo(Commit, CommitDescription):
         bullet_points = "\n".join(
             [f"- {line.strip('*- ').strip()}" for line in self.long_description],
         ).strip()
-        return markdown_template.format(
+        return self.markdown_template.format(
             short_description=self.short_description,
             commit_hash=self.commit_hash,
             bullet_points=bullet_points,
