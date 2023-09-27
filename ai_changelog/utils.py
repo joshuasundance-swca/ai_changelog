@@ -18,7 +18,7 @@ from langchain.schema.runnable import RunnableConfig
 from ai_changelog.pydantic_models import CommitDescription, CommitInfo, Commit
 
 
-def get_model(
+def get_llm(
     provider: str,
     model: str,
     temperature: float = 0.5,
