@@ -17,12 +17,41 @@ This README was originally written by Claude, an LLM from Anthropic.
 
 ## Usage
 
+```bash
+usage: ai_changelog [-h] [--provider {openai,anthropic,anyscale}] [--model MODEL] [--temperature TEMPERATURE] [--max_tokens MAX_TOKENS] [--hub_prompt HUB_PROMPT]
+                    [--context_lines CONTEXT_LINES] [--max_concurrency MAX_CONCURRENCY] [-v]
+                    refs
+
+Process command line arguments.
+
+positional arguments:
+  refs                  Reference comparison with standard git syntax
+
+options:
+  -h, --help            show this help message and exit
+  --provider {openai,anthropic,anyscale}
+                        Model API provider
+  --model MODEL         Model name
+  --temperature TEMPERATURE
+                        Model temperature
+  --max_tokens MAX_TOKENS
+                        Max tokens in output
+  --hub_prompt HUB_PROMPT
+                        Prompt to pull from LangChain Hub
+  --context_lines CONTEXT_LINES
+                        Number of context lines for each commit
+  --max_concurrency MAX_CONCURRENCY
+                        Number of concurrent connections to llm provider (0 means no limit)
+  -v, --verbose         Run LangChain in verbose mode
+
+http://github.com/joshuasundance-swca/ai_changelog
+```
+
 ### Local install
 
 To generate a changelog locally:
 
 ```bash
-pip install -r requirements.txt
 pip install ai_changelog
 
 ai_changelog --help
@@ -34,10 +63,11 @@ ai_changelog main..HEAD  # to summarize changes locally
 ```bash
 docker pull joshuasundance/ai_changelog:latest
 docker run \
+    --env-file .env \
     -v /local_repo_dir:/container_dir_in_repo \
     -w /container_dir_in_repo \
     joshuasundance/ai_changelog:latest \
-    ai_changelog main..HEAD
+    main..HEAD
 ```
 
 ### GitHub Workflow
@@ -55,8 +85,9 @@ Another flow was made to commit an updated changelog to an incoming PR before it
 
 ## Configuration
 
-- Set `OPENAI_API_KEY` in your environment to use a specific OpenAI API key.
+- Set environment variables as needed for your provider of choice (default requires `OPENAI_API_KEY`).
 - Set LangSmith environment variables to enable LangSmith integration, if applicable.
+- Use command line arguments.
 
 ## License
 
@@ -66,6 +97,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## TODO
 
 - Testing
-- Customization / parameterization
-- Integration with LangChain Hub
-- Published GitHub action(s)
+- More robust chains for non-OpenAI LLMs
+-
