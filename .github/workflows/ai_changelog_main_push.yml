@@ -80,5 +80,5 @@ jobs:
     - name: Commit changes
       with:
         COMMIT_MESSAGE: "Update AI Changelog"
-        file_pattern: "AI_CHANGELOG.md"
+        file_pattern: "AI_CHANGELOG*.md"
       uses: stefanzweifel/git-auto-commit-action@v4
