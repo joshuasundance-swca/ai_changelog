@@ -1,5 +1,4 @@
 """Utility functions for the ai_changelog package"""
-
 import os
 import subprocess
 from typing import Any, List, Union
@@ -9,13 +8,15 @@ from langchain.chains.base import Chain
 from langchain.chains.openai_functions import (
     create_structured_output_chain,
 )
-from langchain.chat_models import ChatOpenAI, ChatAnthropic, ChatAnyscale
+from langchain.chat_models import ChatOpenAI, ChatAnyscale
 from langchain.chat_models.base import BaseChatModel
 from langchain.output_parsers import OutputFixingParser, PydanticOutputParser
 from langchain.prompts import ChatPromptTemplate
 from langchain.schema.runnable import RunnableConfig
+from langchain_experimental.llms.anthropic_functions import AnthropicFunctions
 
 from ai_changelog.pydantic_models import CommitDescription, CommitInfo, Commit
+from ai_changelog.string_templates import hum_msg, sys_msg
 
 
 def get_llm(
@@ -26,7 +27,7 @@ def get_llm(
 ) -> BaseChatModel:
     provider_model_dict = {
         "openai": ChatOpenAI,
-        "anthropic": ChatAnthropic,
+        "anthropic": AnthropicFunctions,
         "anyscale": ChatAnyscale,
     }
     try:
@@ -39,7 +40,17 @@ def get_llm(
 def get_prompt(
     hub_prompt_str: str = "joshuasundance/ai_changelog",
 ) -> ChatPromptTemplate:
-    return hub.pull(hub_prompt_str)
+    return (
+        ChatPromptTemplate.from_messages(
+            [
+                ("system", sys_msg),
+                ("human", hum_msg),
+                ("human", "Tip: Make sure to answer in the correct format"),
+            ],
+        )
+        if hub_prompt_str == "joshuasundance/ai_changelog"
+        else hub.pull(hub_prompt_str)
+    )
 
 
 def get_non_openai_chain(llm: BaseChatModel) -> Chain:
@@ -126,17 +137,17 @@ def get_descriptions(
 ) -> List[CommitInfo]:
     """Get the descriptions for a list of commits"""
     config_dict: dict[str, Any] = {"verbose": verbose}
-
-    if provider == "openai":
-        chain = create_structured_output_chain(
+    if max_concurrency > 0:
+        config_dict["max_concurrency"] = max_concurrency
+    chain = (
+        create_structured_output_chain(
             CommitDescription,
             llm,
             prompt,
         )
-    else:
-        chain = get_non_openai_chain(llm)
-    if max_concurrency > 0:
-        config_dict["max_concurrency"] = max_concurrency
+        if provider == "openai"
+        else get_non_openai_chain(llm)
+    )
 
     results: List[dict] = chain.batch(
         [commit.dict() for commit in commits],
