@@ -1,21 +1,21 @@
 """Utility functions for the ai_changelog package"""
-
 import os
 import subprocess
 from typing import Any, List, Union
 
 from langchain import hub
+from langchain.chains.base import Chain
 from langchain.chains.openai_functions import (
     create_structured_output_chain,
 )
-from langchain.chat_models import ChatOpenAI, ChatAnthropic, ChatAnyscale
+from langchain.chat_models import ChatOpenAI, ChatAnyscale, ChatAnthropic
 from langchain.chat_models.base import BaseChatModel
-from langchain.output_parsers import PydanticOutputParser
+from langchain.output_parsers import OutputFixingParser, PydanticOutputParser
 from langchain.prompts import ChatPromptTemplate
-from langchain.schema import HumanMessage
 from langchain.schema.runnable import RunnableConfig
 
 from ai_changelog.pydantic_models import CommitDescription, CommitInfo, Commit
+from ai_changelog.string_templates import hum_msg, sys_msg
 
 
 def get_llm(
@@ -39,7 +39,29 @@ def get_llm(
 def get_prompt(
     hub_prompt_str: str = "joshuasundance/ai_changelog",
 ) -> ChatPromptTemplate:
-    return hub.pull(hub_prompt_str)
+    return (
+        ChatPromptTemplate.from_messages(
+            [
+                ("system", sys_msg),
+                ("human", hum_msg),
+                ("human", "Tip: Make sure to answer in the correct format"),
+            ],
+        )
+        if hub_prompt_str == "joshuasundance/ai_changelog"
+        else hub.pull(hub_prompt_str)
+    )
+
+
+def get_non_openai_chain(llm: BaseChatModel) -> Chain:
+    codellama_prompt_template = hub.pull("joshuasundance/ai_changelog_codellama")
+    parser = PydanticOutputParser(pydantic_object=CommitDescription)
+    fixing_parser = OutputFixingParser.from_llm(
+        parser=parser,
+        llm=llm
+        if not isinstance(llm, ChatAnyscale)
+        else ChatAnyscale(model_name="meta-llama/Llama-2-7b-chat-hf", temperature=0),
+    )
+    return codellama_prompt_template | llm | fixing_parser
 
 
 def get_timestamp(commit_hash: str, format_str: str = "%cD") -> str:
@@ -119,30 +141,28 @@ def get_descriptions(
 ) -> List[CommitInfo]:
     """Get the descriptions for a list of commits"""
     config_dict: dict[str, Any] = {"verbose": verbose}
-
+    if max_concurrency > 0:
+        config_dict["max_concurrency"] = max_concurrency
+    outputs: List[CommitDescription]
     if provider == "openai":
         chain = create_structured_output_chain(
             CommitDescription,
             llm,
             prompt,
         )
-    else:
-        parser = PydanticOutputParser(pydantic_object=CommitDescription)
-        prompt = ChatPromptTemplate.from_messages(
-            prompt.messages + [HumanMessage(content=parser.get_format_instructions())],
+        results: List[dict] = chain.batch(
+            [commit.dict() for commit in commits],
+            RunnableConfig(config_dict),
         )
-        chain = prompt | llm | parser
-    if max_concurrency > 0:
-        config_dict["max_concurrency"] = max_concurrency
+        outputs = [result["function"] for result in results]
 
-    results: List[dict] = chain.batch(
-        [commit.dict() for commit in commits],
-        RunnableConfig(config_dict),
-    )
+    else:
+        chain = get_non_openai_chain(llm)
 
-    outputs: List[CommitDescription] = [
-        result["function"] if provider == "openai" else result for result in results
-    ]
+        outputs = chain.batch(
+            [{"input": commit.diff} for commit in commits],
+            RunnableConfig(config_dict),
+        )
 
     return [
         CommitInfo(**commit.dict(), **commit_description.dict())
