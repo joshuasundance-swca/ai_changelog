@@ -139,24 +139,34 @@ def get_descriptions(
     config_dict: dict[str, Any] = {"verbose": verbose}
     if max_concurrency > 0:
         config_dict["max_concurrency"] = max_concurrency
-    chain = (
-        create_structured_output_chain(
+    outputs: List[CommitDescription]
+    if provider == "openai":
+        chain = create_structured_output_chain(
             CommitDescription,
             llm,
             prompt,
         )
-        if provider == "openai"
-        else get_non_openai_chain(llm)
-    )
+        results: List[dict] = chain.batch(
+            [commit.dict() for commit in commits],
+            RunnableConfig(config_dict),
+        )
+        outputs = [result["function"] for result in results]
 
-    results: List[dict] = chain.batch(
-        [commit.dict() for commit in commits],
-        RunnableConfig(config_dict),
-    )
+    else:
+        chain = (
+            create_structured_output_chain(
+                CommitDescription,
+                llm,
+                prompt,
+            )
+            if provider == "openai"
+            else get_non_openai_chain(llm)
+        )
 
-    outputs: List[CommitDescription] = [
-        result["function"] if provider == "openai" else result for result in results
-    ]
+        outputs = chain.batch(
+            [{"input": commit.diff} for commit in commits],
+            RunnableConfig(config_dict),
+        )
 
     return [
         CommitInfo(**commit.dict(), **commit_description.dict())
