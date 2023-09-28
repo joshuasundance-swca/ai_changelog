@@ -1,4 +1,8 @@
 # AI CHANGELOG
+## [Updated project version to 0.0.11](https://github.com/joshuasundance-swca/ai_changelog/commit/1a15c0ebe991cbc32d5a01ab0e9ee949a2d201bf)
+Thu Sep 28 14:32:58 2023 -0400
+- The project's version number in __init__.py, pyproject.toml, and tool.bumpver has been updated from 0.0.10 to 0.0.11.
+- This update reflects the new changes or features added to the project.
 ## [Refactored the AI Changelog workflow file](https://github.com/joshuasundance-swca/ai_changelog/commit/2478280647ca2d5e865254b76ed0df71bf585b8d)
 Thu Sep 28 14:31:19 2023 -0400
 - The commit involves the refactoring of the AI Changelog GitHub workflow file. The changes include the removal of unnecessary line breaks and comments, thereby improving the readability of the code. The Anyscale provider section has been commented out, suggesting it's not currently in use. The Python version used in the setup has been updated to 3.11.
