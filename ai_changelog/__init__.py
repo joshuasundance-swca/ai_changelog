@@ -1,7 +1,7 @@
 from ai_changelog.pydantic_models import Commit, CommitInfo, CommitDescription
 from ai_changelog.utils import get_commits, update_changelog
 
-__version__ = "0.0.10"
+__version__ = "0.0.11"
 
 __all__ = [
     "Commit",
