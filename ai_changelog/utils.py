@@ -153,26 +153,17 @@ def get_descriptions(
         outputs = [result["function"] for result in results]
 
     else:
-        chain = (
-            create_structured_output_chain(
-                CommitDescription,
-                llm,
-                prompt,
-            )
-            if provider == "openai"
-            else get_non_openai_chain(llm)
-        )
-
         if provider == "anyscale":
-            [
-                chain.invoke(dict(input=commit.diff), RunnableConfig(config_dict))
-                for commit in commits
-            ]
-        else:
-            outputs = chain.batch(
-                [{"input": commit.diff} for commit in commits],
-                RunnableConfig(config_dict),
+            chain = get_non_openai_chain(
+                ChatAnyscale(model_name="meta-llama/Llama-2-7b-chat-hf", temperature=0),
             )
+        else:
+            chain = get_non_openai_chain(llm)
+
+        outputs = chain.batch(
+            [{"input": commit.diff} for commit in commits],
+            RunnableConfig(config_dict),
+        )
 
     return [
         CommitInfo(**commit.dict(), **commit_description.dict())
