@@ -163,10 +163,16 @@ def get_descriptions(
             else get_non_openai_chain(llm)
         )
 
-        outputs = chain.batch(
-            [{"input": commit.diff} for commit in commits],
-            RunnableConfig(config_dict),
-        )
+        if provider == "anyscale":
+            [
+                chain.invoke(dict(input=commit.diff), RunnableConfig(config_dict))
+                for commit in commits
+            ]
+        else:
+            outputs = chain.batch(
+                [{"input": commit.diff} for commit in commits],
+                RunnableConfig(config_dict),
+            )
 
     return [
         CommitInfo(**commit.dict(), **commit_description.dict())
