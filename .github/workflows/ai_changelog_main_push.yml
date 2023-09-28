@@ -1,5 +1,4 @@
 name: Update AI Changelog on Push to Main
-
 on:
   push:
     branches: [main]
@@ -7,34 +6,27 @@ on:
       - "AI_CHANGELOG.md"
       - "AI_CHANGELOG-claude-2.md"
       - "AI_CHANGELOG-codellama.md"
-
 jobs:
   update-changelog:
     runs-on: ubuntu-latest
-
     permissions:
       contents: write
       pull-requests: write
-
     steps:
-
     - name: Checkout code
       uses: actions/checkout@v4
       with:
         token: ${{ secrets.PAT }}
         fetch-depth: 0
-
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
         python-version: 3.11
         cache: pip
-
     - name: Install Python libraries
       run: |
         pip install --user -r requirements.txt
         pip install --user .
-
     - name: "Update changelog(s)"
       env:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -49,22 +41,13 @@ jobs:
           --provider openai \
           --model gpt-4 \
           -o AI_CHANGELOG.md &
-
         ai_changelog origin/main^..origin/main \
           --provider anthropic \
           --model claude-2 \
           --max_concurrency 5 \
           --temperature 0 \
           -o AI_CHANGELOG-claude-2.md &
-
-#        ai_changelog origin/main^..origin/main \
-#          --provider anyscale \
-#          --model "codellama/CodeLlama-34b-Instruct-hf" \
-#          --temperature 0 \
-#          -o AI_CHANGELOG-codellama.md &
-
         wait
-
     - name: Commit changes
       with:
         COMMIT_MESSAGE: "Update AI Changelog"
