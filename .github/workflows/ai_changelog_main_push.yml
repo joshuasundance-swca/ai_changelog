@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths-ignore:
       - "AI_CHANGELOG.md"
+      - "AI_CHANGELOG-claude-2.md"
+      - "AI_CHANGELOG-codellama.md"
 
 jobs:
   update-changelog:
