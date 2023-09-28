@@ -48,7 +48,7 @@ jobs:
 
     - name: "claude-2: AI_CHANGELOG-claude-2.md"
       env:
-        OPENAI_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         LANGCHAIN_API_KEY: ${{ secrets.LANGCHAIN_API_KEY }}
         LANGCHAIN_PROJECT: ai-changelog
         LANGCHAIN_ENDPOINT: https://api.smith.langchain.com
@@ -63,7 +63,7 @@ jobs:
 
 #    - name: "codellama: AI_CHANGELOG-codellama.md"
 #      env:
-#        OPENAI_API_KEY: ${{ secrets.ANYSCALE_API_KEY }}
+#        ANYSCALE_API_KEY: ${{ secrets.ANYSCALE_API_KEY }}
 #        LANGCHAIN_API_KEY: ${{ secrets.LANGCHAIN_API_KEY }}
 #        LANGCHAIN_PROJECT: ai-changelog
 #        LANGCHAIN_ENDPOINT: https://api.smith.langchain.com
