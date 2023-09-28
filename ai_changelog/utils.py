@@ -56,7 +56,12 @@ def get_prompt(
 def get_non_openai_chain(llm: BaseChatModel) -> Chain:
     codellama_prompt_template = hub.pull("joshuasundance/ai_changelog_codellama")
     parser = PydanticOutputParser(pydantic_object=CommitDescription)
-    fixing_parser = OutputFixingParser.from_llm(parser=parser, llm=llm)
+    fixing_parser = OutputFixingParser.from_llm(
+        parser=parser,
+        llm=llm
+        if not isinstance(llm, ChatAnyscale)
+        else ChatAnyscale(model_name="meta-llama/Llama-2-7b-chat-hf", temperature=0),
+    )
     return codellama_prompt_template | llm | fixing_parser
 
 
@@ -153,12 +158,7 @@ def get_descriptions(
         outputs = [result["function"] for result in results]
 
     else:
-        if provider == "anyscale":
-            chain = get_non_openai_chain(
-                ChatAnyscale(model_name="meta-llama/Llama-2-7b-chat-hf", temperature=0),
-            )
-        else:
-            chain = get_non_openai_chain(llm)
+        chain = get_non_openai_chain(llm)
 
         outputs = chain.batch(
             [{"input": commit.diff} for commit in commits],
