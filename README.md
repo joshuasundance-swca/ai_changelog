@@ -97,5 +97,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## TODO
 
 - Testing
-- More robust chains for non-OpenAI LLMs
 - Get CodeLlama working reliably in CICD (currently hit or miss on structured output)
