@@ -5,34 +5,38 @@ on:
     branches: [main]
     paths-ignore:
       - "AI_CHANGELOG.md"
+      - "AI_CHANGELOG-claude-2.md"
+      - "AI_CHANGELOG-codellama.md"
 
 jobs:
-  update-changelog:
+  setup:
     runs-on: ubuntu-latest
-
     permissions:
       contents: write
       pull-requests: write
-
     steps:
-
     - name: Checkout code
       uses: actions/checkout@v4
       with:
         token: ${{ secrets.PAT }}
         fetch-depth: 0
-
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
         python-version: 3.11
         cache: pip
-
     - name: Install Python libraries
       run: |
         pip install --user -r requirements.txt
         pip install --user .
 
+  default_changelog:
+    needs: setup
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
     - name: "gpt-4: AI_CHANGELOG.md"
       env:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -46,6 +50,13 @@ jobs:
         --model gpt-4 \
         -o AI_CHANGELOG.md
 
+  anthropic_changelog:
+    needs: setup
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
     - name: "claude-2: AI_CHANGELOG-claude-2.md"
       env:
         ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -61,6 +72,16 @@ jobs:
           --temperature 0 \
           -o AI_CHANGELOG-claude-2.md
 
+#  codellama_changelog:
+#    needs: setup
+#    runs-on: ubuntu-latest
+#
+#    permissions:
+#      contents: write
+#      pull-requests: write
+#
+#    steps:
+#
 #    - name: "codellama: AI_CHANGELOG-codellama.md"
 #      env:
 #        ANYSCALE_API_KEY: ${{ secrets.ANYSCALE_API_KEY }}
@@ -75,6 +96,17 @@ jobs:
 #          --temperature 0 \
 #          -o AI_CHANGELOG-codellama.md
 
+  save_changelogs:
+    needs:
+      - setup
+      - default_changelog
+      - anthropic_changelog
+#      - codellama_changelog
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
     - name: Commit changes
       with:
         COMMIT_MESSAGE: "Update AI Changelog"
