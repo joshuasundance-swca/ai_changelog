@@ -8,12 +8,11 @@ from langchain.chains.base import Chain
 from langchain.chains.openai_functions import (
     create_structured_output_chain,
 )
-from langchain.chat_models import ChatOpenAI, ChatAnyscale
+from langchain.chat_models import ChatOpenAI, ChatAnyscale, ChatAnthropic
 from langchain.chat_models.base import BaseChatModel
 from langchain.output_parsers import OutputFixingParser, PydanticOutputParser
 from langchain.prompts import ChatPromptTemplate
 from langchain.schema.runnable import RunnableConfig
-from langchain_experimental.llms.anthropic_functions import AnthropicFunctions
 
 from ai_changelog.pydantic_models import CommitDescription, CommitInfo, Commit
 from ai_changelog.string_templates import hum_msg, sys_msg
@@ -27,7 +26,7 @@ def get_llm(
 ) -> BaseChatModel:
     provider_model_dict = {
         "openai": ChatOpenAI,
-        "anthropic": AnthropicFunctions,
+        "anthropic": ChatAnthropic,
         "anyscale": ChatAnyscale,
     }
     try:
