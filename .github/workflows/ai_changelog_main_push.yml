@@ -34,7 +34,7 @@ jobs:
         pip install --user -r requirements.txt
         pip install --user .
 
-    - name: Execute script and prepend to AI_CHANGELOG.md
+    - name: "gpt-4: AI_CHANGELOG.md"
       env:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         LANGCHAIN_API_KEY: ${{ secrets.LANGCHAIN_API_KEY }}
@@ -47,7 +47,7 @@ jobs:
         --model gpt-4 \
         -o AI_CHANGELOG.md
 
-    - name: Execute script and prepend to AI_CHANGELOG.md
+    - name: "claude-2: AI_CHANGELOG-claude-2.md"
       env:
         OPENAI_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         LANGCHAIN_API_KEY: ${{ secrets.LANGCHAIN_API_KEY }}
@@ -62,19 +62,19 @@ jobs:
           --temperature 0 \
           -o AI_CHANGELOG-claude-2.md
 
-    - name: Execute script and prepend to AI_CHANGELOG.md
-      env:
-        OPENAI_API_KEY: ${{ secrets.ANYSCALE_API_KEY }}
-        LANGCHAIN_API_KEY: ${{ secrets.LANGCHAIN_API_KEY }}
-        LANGCHAIN_PROJECT: ai-changelog
-        LANGCHAIN_ENDPOINT: https://api.smith.langchain.com
-        LANGCHAIN_TRACING_V2: true
-      run: |
-        ai_changelog origin/main^..origin/main \
-          --provider anyscale \
-          --model "codellama/CodeLlama-34b-Instruct-hf" \
-          --temperature 0 \
-          -o AI_CHANGELOG-codellama.md
+#    - name: "codellama: AI_CHANGELOG-codellama.md"
+#      env:
+#        OPENAI_API_KEY: ${{ secrets.ANYSCALE_API_KEY }}
+#        LANGCHAIN_API_KEY: ${{ secrets.LANGCHAIN_API_KEY }}
+#        LANGCHAIN_PROJECT: ai-changelog
+#        LANGCHAIN_ENDPOINT: https://api.smith.langchain.com
+#        LANGCHAIN_TRACING_V2: true
+#      run: |
+#        ai_changelog origin/main^..origin/main \
+#          --provider anyscale \
+#          --model "codellama/CodeLlama-34b-Instruct-hf" \
+#          --temperature 0 \
+#          -o AI_CHANGELOG-codellama.md
 
     - name: Commit changes
       with:
