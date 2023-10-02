@@ -1,4 +1,16 @@
 # AI CHANGELOG
+## [Bump pydantic to 2.4.2](https://github.com/joshuasundance-swca/ai_changelog/commit/0fb3a28fe832c7194073270dca51597c9894e689)
+Mon Oct 2 08:38:36 2023 +0000
+- Upgrade pydantic dependency to version 2.4.2 for improved type hints and bug fixes.
+- This includes fixes for issues with GenericModel and better support for Python 3.11.
+## [Upgrade langchain dependency](https://github.com/joshuasundance-swca/ai_changelog/commit/cd7606d9f794816c90a5e582be8e56a574491e40)
+Mon Oct 2 08:38:27 2023 +0000
+- Upgrade langchain from 0.0.300 to 0.0.305
+- This includes bug fixes and new features added in langchain 0.0.301 through 0.0.305
+## [Bump openai dependency to 0.28.1](https://github.com/joshuasundance-swca/ai_changelog/commit/8e28e72c875302ba17e62b8b34da7b214970ad89)
+Mon Oct 2 08:38:16 2023 +0000
+- Upgrade openai package to latest patch version 0.28.1 for bug fixes and improvements.
+- This includes fixes for issues with completions and embeddings.
 ## [Bump version 0.0.10 -> 0.0.11](https://github.com/joshuasundance-swca/ai_changelog/commit/1a15c0ebe991cbc32d5a01ab0e9ee949a2d201bf)
 Thu Sep 28 14:32:58 2023 -0400
 - Bump version in __init__.py

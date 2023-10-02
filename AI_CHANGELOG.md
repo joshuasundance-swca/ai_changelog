@@ -1,4 +1,13 @@
 # AI CHANGELOG
+## [Updated Pydantic version in requirements.txt](https://github.com/joshuasundance-swca/ai_changelog/commit/0fb3a28fe832c7194073270dca51597c9894e689)
+Mon Oct 2 08:38:36 2023 +0000
+- This commit updates the Pydantic library version from 2.4.0 to 2.4.2 in the requirements.txt file. This update might include bug fixes, new features, or performance improvements in the Pydantic library.
+## [Updated langchain version in requirements.txt](https://github.com/joshuasundance-swca/ai_changelog/commit/cd7606d9f794816c90a5e582be8e56a574491e40)
+Mon Oct 2 08:38:27 2023 +0000
+- The langchain version in the requirements.txt file was updated from 0.0.300 to 0.0.305. This update could include bug fixes or new features in the langchain library.
+## [Updated OpenAI package version](https://github.com/joshuasundance-swca/ai_changelog/commit/8e28e72c875302ba17e62b8b34da7b214970ad89)
+Mon Oct 2 08:38:16 2023 +0000
+- The OpenAI package version in the requirements.txt file has been updated. The previous version was 0.28.0 and it has been upgraded to 0.28.1. This update may include bug fixes, security improvements, or new features from the OpenAI package.
 ## [Updated project version to 0.0.11](https://github.com/joshuasundance-swca/ai_changelog/commit/1a15c0ebe991cbc32d5a01ab0e9ee949a2d201bf)
 Thu Sep 28 14:32:58 2023 -0400
 - The project's version number in __init__.py, pyproject.toml, and tool.bumpver has been updated from 0.0.10 to 0.0.11.
