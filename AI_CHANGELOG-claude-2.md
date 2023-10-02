@@ -1,4 +1,8 @@
 # AI CHANGELOG
+## [Bump version 0.0.11 -> 0.0.12](https://github.com/joshuasundance-swca/ai_changelog/commit/57c1da05f42208a57a1326bac6eaa42067c4cc5d)
+Mon Oct 2 09:01:46 2023 -0400
+- Bumped version number in __init__.py and pyproject.toml from 0.0.11 to 0.0.12
+- Ran bumpver to update version in pyproject.toml and commit changes
 ## [Bump pydantic to 2.4.2](https://github.com/joshuasundance-swca/ai_changelog/commit/0fb3a28fe832c7194073270dca51597c9894e689)
 Mon Oct 2 08:38:36 2023 +0000
 - Upgrade pydantic dependency to version 2.4.2 for improved type hints and bug fixes.

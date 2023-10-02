@@ -1,4 +1,7 @@
 # AI CHANGELOG
+## [Version update from 0.0.11 to 0.0.12](https://github.com/joshuasundance-swca/ai_changelog/commit/57c1da05f42208a57a1326bac6eaa42067c4cc5d)
+Mon Oct 2 09:01:46 2023 -0400
+- This commit represents a version bump from 0.0.11 to 0.0.12. The version number has been updated in multiple places: the `__init__.py` file, the `pyproject.toml` file, and the `bumpver` tool configuration. This suggests that a new version of the software is being prepared for release, with changes that are significant enough to warrant a version number increment.
 ## [Updated Pydantic version in requirements.txt](https://github.com/joshuasundance-swca/ai_changelog/commit/0fb3a28fe832c7194073270dca51597c9894e689)
 Mon Oct 2 08:38:36 2023 +0000
 - This commit updates the Pydantic library version from 2.4.0 to 2.4.2 in the requirements.txt file. This update might include bug fixes, new features, or performance improvements in the Pydantic library.
