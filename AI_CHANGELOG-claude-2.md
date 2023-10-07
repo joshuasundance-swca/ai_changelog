@@ -1,4 +1,8 @@
 # AI CHANGELOG
+## [Bump version 0.0.12 -> 0.0.13](https://github.com/joshuasundance-swca/ai_changelog/commit/39effeb73933bc7f7f47e0358f92fe3a3b13b3d9)
+Fri Oct 6 21:03:07 2023 -0400
+- Increment version number in __init__.py and pyproject.toml
+- Update CHANGELOG.md with new version
 ## [Upgrade langchain dependency](https://github.com/joshuasundance-swca/ai_changelog/commit/63d56639876f067797b382c94edeeba5b1c715ba)
 Thu Oct 5 13:54:40 2023 +0000
 - Upgrade langchain from 0.0.305 to 0.0.308
