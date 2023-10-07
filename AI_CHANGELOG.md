@@ -1,4 +1,7 @@
 # AI CHANGELOG
+## [Updated langchain version in requirements.txt](https://github.com/joshuasundance-swca/ai_changelog/commit/63d56639876f067797b382c94edeeba5b1c715ba)
+Thu Oct 5 13:54:40 2023 +0000
+- The langchain version in the requirements.txt file was updated from 0.0.305 to 0.0.308. This update likely includes bug fixes or new features from the langchain library.
 ## [Version update from 0.0.11 to 0.0.12](https://github.com/joshuasundance-swca/ai_changelog/commit/57c1da05f42208a57a1326bac6eaa42067c4cc5d)
 Mon Oct 2 09:01:46 2023 -0400
 - This commit represents a version bump from 0.0.11 to 0.0.12. The version number has been updated in multiple places: the `__init__.py` file, the `pyproject.toml` file, and the `bumpver` tool configuration. This suggests that a new version of the software is being prepared for release, with changes that are significant enough to warrant a version number increment.
