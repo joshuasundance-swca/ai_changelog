@@ -2,8 +2,11 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![python](https://img.shields.io/badge/Python-3.7+-3776AB.svg?style=flat&logo=python&logoColor=white)](https://www.python.org)
+
+[![Publish to PyPI](https://github.com/joshuasundance-swca/ai_changelog/actions/workflows/publish_on_pypi.yml/badge.svg)](https://github.com/joshuasundance-swca/ai_changelog/actions/workflows/publish_on_pypi.yml)
 ![GitHub tag (with filter)](https://img.shields.io/github/v/tag/joshuasundance-swca/ai_changelog)
-[![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?&logo=docker&logoColor=white)](https://hub.docker.com/r/joshuasundance/ai_changelog)
+
+[![Push to Docker Hub](https://github.com/joshuasundance-swca/ai_changelog/actions/workflows/docker-hub.yml/badge.svg)](https://github.com/joshuasundance-swca/ai_changelog/actions/workflows/docker-hub.yml)
 [![Docker Image Size (tag)](https://img.shields.io/docker/image-size/joshuasundance/ai_changelog/latest)](https://hub.docker.com/r/joshuasundance/ai_changelog)
 
 ![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/joshuasundance-swca/ai_changelog)
