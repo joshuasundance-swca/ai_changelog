@@ -1,4 +1,16 @@
 # AI CHANGELOG
+## [Automated GitHub workflows](https://github.com/joshuasundance-swca/ai_changelog/commit/c71975375374c80218b8c4369d7654d828fb50d9)
+Thu Oct 19 15:29:03 2023 -0400
+- Added GitHub workflow to publish Python package to PyPI
+- Added GitHub workflow to build and push Docker image to Docker Hub
+- Updated badges in README
+## [Update project badges and README](https://github.com/joshuasundance-swca/ai_changelog/commit/4b34410086ac2d0e62afa10fb52a3612896946d4)
+Thu Oct 19 10:48:57 2023 -0400
+- Add Code Climate badges for maintainability, issues, and technical debt
+- Add Docker Hub badges for image version and size
+- Re-order badges for better visual hierarchy
+- Update vulnerability scanning badge to Snyk
+- Minor formatting updates
 ## [Upgrade langchain dependency](https://github.com/joshuasundance-swca/ai_changelog/commit/89946ea1796f331d698bb0b2106cd93b61ea6743)
 Mon Oct 16 08:43:41 2023 +0000
 - Upgrade langchain from 0.0.308 to 0.0.315

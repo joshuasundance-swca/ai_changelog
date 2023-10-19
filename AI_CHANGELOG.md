@@ -1,4 +1,10 @@
 # AI CHANGELOG
+## [Updated README with new badges](https://github.com/joshuasundance-swca/ai_changelog/commit/c71975375374c80218b8c4369d7654d828fb50d9)
+Thu Oct 19 15:29:03 2023 -0400
+- The README.md file has been updated to include new badges for PyPI publishing and Docker Hub pushing. The Docker badge has been replaced with a new one that reflects the status of Docker Hub pushes.
+## [Updated badges in README.md](https://github.com/joshuasundance-swca/ai_changelog/commit/4b34410086ac2d0e62afa10fb52a3612896946d4)
+Thu Oct 19 10:48:57 2023 -0400
+- This commit updates the badges displayed in the README.md file. Some badges have been added to provide more information about the project, such as Docker details, Code Climate metrics, and a known vulnerabilities badge. Some existing badges have been reordered.
 ## [Updated langchain version in requirements.txt](https://github.com/joshuasundance-swca/ai_changelog/commit/89946ea1796f331d698bb0b2106cd93b61ea6743)
 Mon Oct 16 08:43:41 2023 +0000
 - The langchain version was updated from 0.0.308 to 0.0.315 in the requirements.txt file. This update may include bug fixes, new features, or improvements in the langchain package.
