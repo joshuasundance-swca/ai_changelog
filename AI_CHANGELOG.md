@@ -1,4 +1,7 @@
 # AI CHANGELOG
+## [Updated anthropic version in requirements.txt](https://github.com/joshuasundance-swca/ai_changelog/commit/8ed257b2b13955b63ace51784a0308eb8bc36316)
+Mon Oct 23 16:45:30 2023 +0000
+- The anthropic package version was updated from 0.3.11 to 0.5.0 in the requirements.txt file. No other changes were made to the file.
 ## [Updated README with new badges](https://github.com/joshuasundance-swca/ai_changelog/commit/c71975375374c80218b8c4369d7654d828fb50d9)
 Thu Oct 19 15:29:03 2023 -0400
 - The README.md file has been updated to include new badges for PyPI publishing and Docker Hub pushing. The Docker badge has been replaced with a new one that reflects the status of Docker Hub pushes.

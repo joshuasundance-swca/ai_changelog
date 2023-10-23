@@ -1,4 +1,8 @@
 # AI CHANGELOG
+## [Upgrade anthropic to 0.5.0](https://github.com/joshuasundance-swca/ai_changelog/commit/8ed257b2b13955b63ace51784a0308eb8bc36316)
+Mon Oct 23 16:45:30 2023 +0000
+- Upgrade anthropic dependency to latest version 0.5.0
+- This upgrades anthropic from 0.3.11 to 0.5.0
 ## [Automated GitHub workflows](https://github.com/joshuasundance-swca/ai_changelog/commit/c71975375374c80218b8c4369d7654d828fb50d9)
 Thu Oct 19 15:29:03 2023 -0400
 - Added GitHub workflow to publish Python package to PyPI
