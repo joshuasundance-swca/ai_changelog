@@ -1,4 +1,7 @@
 # AI CHANGELOG
+## [Updated langchain version in requirements.txt](https://github.com/joshuasundance-swca/ai_changelog/commit/fa57cab0a4d52c9ef974c77ebc5f5bc68172de96)
+Mon Nov 6 08:30:02 2023 +0000
+- The langchain package version has been updated in the requirements.txt file. The previous version was 0.0.325, and the new version is 0.0.330. This update may include new features or bug fixes from the langchain package.
 ## [Updated langchain version in requirements.txt](https://github.com/joshuasundance-swca/ai_changelog/commit/82a3bc21a27fa85c03d694430c5894d44f6c9041)
 Mon Oct 30 08:08:53 2023 +0000
 - The langchain version in the requirements.txt file was updated from 0.0.320 to 0.0.325. This commit does not include any other changes.

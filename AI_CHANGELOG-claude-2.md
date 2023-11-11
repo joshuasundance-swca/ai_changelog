@@ -1,4 +1,8 @@
 # AI CHANGELOG
+## [Upgrade langchain dependency](https://github.com/joshuasundance-swca/ai_changelog/commit/fa57cab0a4d52c9ef974c77ebc5f5bc68172de96)
+Mon Nov 6 08:30:02 2023 +0000
+- Upgrade langchain from 0.0.325 to 0.0.330
+- This includes bug fixes and new features added in recent langchain releases
 ## [Upgrade langchain dependency](https://github.com/joshuasundance-swca/ai_changelog/commit/82a3bc21a27fa85c03d694430c5894d44f6c9041)
 Mon Oct 30 08:08:53 2023 +0000
 - Upgrade langchain from 0.0.320 to 0.0.325
