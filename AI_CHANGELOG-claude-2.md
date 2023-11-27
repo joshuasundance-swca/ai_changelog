@@ -1,4 +1,11 @@
 # AI CHANGELOG
+## [Upgrade dependencies](https://github.com/joshuasundance-swca/ai_changelog/commit/0cc7eb29bf779d53a8e67ae7580f097aae6b7091)
+Mon Nov 27 17:33:28 2023 -0500
+- Upgraded anthropic from 0.5.0 to 0.7.4
+- Upgraded langchain from 0.0.330 to 0.0.340
+- Upgraded langchainhub from 0.1.13 to 0.1.14
+- Upgraded openai from 0.28.1 to 1.3.5
+- Upgraded pydantic from 2.4.2 to 2.5.2
 ## [Upgrade langchain dependency](https://github.com/joshuasundance-swca/ai_changelog/commit/fa57cab0a4d52c9ef974c77ebc5f5bc68172de96)
 Mon Nov 6 08:30:02 2023 +0000
 - Upgrade langchain from 0.0.325 to 0.0.330

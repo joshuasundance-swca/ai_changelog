@@ -1,4 +1,7 @@
 # AI CHANGELOG
+## [Updated package versions in requirements.txt](https://github.com/joshuasundance-swca/ai_changelog/commit/0cc7eb29bf779d53a8e67ae7580f097aae6b7091)
+Mon Nov 27 17:33:28 2023 -0500
+- The commit updates the versions of several packages in the requirements.txt file. The packages updated include 'anthropic', 'langchain', 'langchainhub', 'openai', and 'pydantic'. The version updates ensure the application uses the latest and possibly more stable or secure versions of these packages.
 ## [Updated langchain version in requirements.txt](https://github.com/joshuasundance-swca/ai_changelog/commit/fa57cab0a4d52c9ef974c77ebc5f5bc68172de96)
 Mon Nov 6 08:30:02 2023 +0000
 - The langchain package version has been updated in the requirements.txt file. The previous version was 0.0.325, and the new version is 0.0.330. This update may include new features or bug fixes from the langchain package.
