@@ -1,4 +1,8 @@
 # AI CHANGELOG
+## [Upgrade anthropic to 0.7.5](https://github.com/joshuasundance-swca/ai_changelog/commit/b6ab4298562d700487d075b497801b998637a40e)
+Mon Nov 27 17:35:07 2023 -0500
+- Upgrade anthropic dependency to latest version 0.7.5
+- Update requirements.txt file with new anthropic version
 ## [Upgrade dependencies](https://github.com/joshuasundance-swca/ai_changelog/commit/0cc7eb29bf779d53a8e67ae7580f097aae6b7091)
 Mon Nov 27 17:33:28 2023 -0500
 - Upgraded anthropic from 0.5.0 to 0.7.4
