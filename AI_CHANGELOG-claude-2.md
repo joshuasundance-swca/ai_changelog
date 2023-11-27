@@ -1,4 +1,8 @@
 # AI CHANGELOG
+## [Upgrade LangChain dependency](https://github.com/joshuasundance-swca/ai_changelog/commit/359441267c33f8e3d7d69be9273c2e5b9c79ca4a)
+Mon Nov 27 17:36:31 2023 -0500
+- Bump LangChain version from 0.0.340 to 0.0.341
+- Update requirements.txt file with latest LangChain release
 ## [Upgrade anthropic to 0.7.5](https://github.com/joshuasundance-swca/ai_changelog/commit/b6ab4298562d700487d075b497801b998637a40e)
 Mon Nov 27 17:35:07 2023 -0500
 - Upgrade anthropic dependency to latest version 0.7.5

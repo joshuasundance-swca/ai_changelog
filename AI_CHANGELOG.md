@@ -1,4 +1,7 @@
 # AI CHANGELOG
+## [Updated langchain version in requirements.txt](https://github.com/joshuasundance-swca/ai_changelog/commit/359441267c33f8e3d7d69be9273c2e5b9c79ca4a)
+Mon Nov 27 17:36:31 2023 -0500
+- The langchain version in the requirements.txt file has been updated from 0.0.340 to 0.0.341. This update could include bug fixes or new features from the langchain library.
 ## [Updated anthropic package version in requirements.txt](https://github.com/joshuasundance-swca/ai_changelog/commit/b6ab4298562d700487d075b497801b998637a40e)
 Mon Nov 27 17:35:07 2023 -0500
 - The anthropic package version in the requirements.txt file was updated from 0.7.4 to 0.7.5. No other changes were made in this commit.
