@@ -1,4 +1,7 @@
 # AI CHANGELOG
+## [Updated library versions in requirements.txt](https://github.com/joshuasundance-swca/ai_changelog/commit/fa3079be09dacbcee4b445855f7d6900a37dbd59)
+Tue Dec 5 10:05:39 2023 -0500
+- Updated the versions of the anthropic, langchain, and openai libraries in the requirements.txt file. The anthropic library was updated from version 0.7.5 to 0.7.7, the langchain library from version 0.0.341 to 0.0.345, and the openai library from version 1.3.5 to 1.3.7.
 ## [Updated langchain version in requirements.txt](https://github.com/joshuasundance-swca/ai_changelog/commit/359441267c33f8e3d7d69be9273c2e5b9c79ca4a)
 Mon Nov 27 17:36:31 2023 -0500
 - The langchain version in the requirements.txt file has been updated from 0.0.340 to 0.0.341. This update could include bug fixes or new features from the langchain library.
