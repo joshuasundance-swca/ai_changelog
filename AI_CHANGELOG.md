@@ -1,4 +1,7 @@
 # AI CHANGELOG
+## [Updated anthropic package version](https://github.com/joshuasundance-swca/ai_changelog/commit/93bc21f70b40db74b02e5a3d922cbed4a54cd720)
+Mon Dec 18 13:12:29 2023 +0000
+- The anthropic package version in the requirements.txt file has been updated. The previous version was 0.7.7 and it has been updated to version 0.7.8. No other changes have been made to the requirements.txt file in this commit.
 ## [Updated langchain version in requirements.txt](https://github.com/joshuasundance-swca/ai_changelog/commit/e9a6f8469ddcb15bac26d7908354a40d0a15ff68)
 Mon Dec 18 08:39:48 2023 +0000
 - The langchain version was updated in the requirements.txt file. The previous version was 0.0.348 and it has been updated to 0.0.350.
