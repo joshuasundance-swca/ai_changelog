@@ -1,4 +1,7 @@
 # AI CHANGELOG
+## [Upgrade LangChain dependency](https://github.com/joshuasundance-swca/ai_changelog/commit/e9a6f8469ddcb15bac26d7908354a40d0a15ff68)
+Mon Dec 18 08:39:48 2023 +0000
+- Bump LangChain version from 0.0.348 to 0.0.350 in requirements.txt
 ## [Upgrade LangChain dependency](https://github.com/joshuasundance-swca/ai_changelog/commit/6c1f419a93e12066e7569645979f92a254ce2a6d)
 Mon Dec 11 08:27:14 2023 +0000
 - Bump LangChain version from 0.0.345 to 0.0.348 in requirements.txt
