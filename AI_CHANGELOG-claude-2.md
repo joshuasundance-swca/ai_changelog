@@ -1,4 +1,10 @@
 # AI CHANGELOG
+## [Upgrade dependencies](https://github.com/joshuasundance-swca/ai_changelog/commit/86f4784f34b9230ccbf95962a060e3897a66c48c)
+Wed Dec 27 03:31:19 2023 +0000
+- Upgrade Anthropic to 0.8.1
+- Upgrade LangChain to 0.0.352
+- Upgrade OpenAI to 1.6.1
+- Upgrade Pydantic to 2.5.3
 ## [Configure Dependabot updates](https://github.com/joshuasundance-swca/ai_changelog/commit/ad7e56d40aeea883ab5294cc226600053c024848)
 Tue Dec 26 22:30:06 2023 -0500
 - Added app group to Dependabot config to enable version updates for all packages

@@ -1,4 +1,7 @@
 # AI CHANGELOG
+## [Updated package versions in requirements.txt](https://github.com/joshuasundance-swca/ai_changelog/commit/86f4784f34b9230ccbf95962a060e3897a66c48c)
+Wed Dec 27 03:31:19 2023 +0000
+- The commit includes updates to the versions of several packages in the requirements.txt file. The anthropic package was updated from version 0.7.8 to 0.8.1, the langchain package from version 0.0.350 to 0.0.352, the openai package from version 1.5.0 to 1.6.1, and the pydantic package from version 2.5.2 to 2.5.3.
 ## [Added grouping to Dependabot configuration](https://github.com/joshuasundance-swca/ai_changelog/commit/ad7e56d40aeea883ab5294cc226600053c024848)
 Tue Dec 26 22:30:06 2023 -0500
 - This commit introduces a new grouping configuration to the Dependabot settings. Now, all dependencies will be grouped under the 'app' group. This means that whenever Dependabot checks for updates, it will group all updates into a single pull request rather than creating separate pull requests for each update.
