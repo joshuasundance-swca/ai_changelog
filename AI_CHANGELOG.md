@@ -1,4 +1,7 @@
 # AI CHANGELOG
+## [Added bot configuration to GitHub Actions workflow](https://github.com/joshuasundance-swca/ai_changelog/commit/baef94d69e76105170ad917ca7084daae4cf7808)
+Tue Dec 26 23:35:58 2023 -0500
+- This commit adds a new step to the GitHub Actions workflow that configures the bot's email and name. This is done to ensure that any commits made by the bot are correctly attributed to it.
 ## [Added a new GitHub workflow for version bumping](https://github.com/joshuasundance-swca/ai_changelog/commit/90fc4dee7df755b56d0e879b50b5c28eb9f0af4b)
 Tue Dec 26 23:16:15 2023 -0500
 - This commit introduces a new GitHub workflow file named 'bumpver.yml'.

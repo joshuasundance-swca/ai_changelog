@@ -1,4 +1,8 @@
 # AI CHANGELOG
+## [Configure git user for bumpver](https://github.com/joshuasundance-swca/ai_changelog/commit/baef94d69e76105170ad917ca7084daae4cf7808)
+Tue Dec 26 23:35:58 2023 -0500
+- Add git config step to set local user email and name for bumpver commit
+- This prevents bumpver from failing due to missing git user config
 ## [Add workflow for bumping version on trigger](https://github.com/joshuasundance-swca/ai_changelog/commit/90fc4dee7df755b56d0e879b50b5c28eb9f0af4b)
 Tue Dec 26 23:16:15 2023 -0500
 - Add GitHub workflow definition file to repository
