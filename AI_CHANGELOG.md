@@ -1,4 +1,7 @@
 # AI CHANGELOG
+## [Added grouping to Dependabot configuration](https://github.com/joshuasundance-swca/ai_changelog/commit/ad7e56d40aeea883ab5294cc226600053c024848)
+Tue Dec 26 22:30:06 2023 -0500
+- This commit introduces a new grouping configuration to the Dependabot settings. Now, all dependencies will be grouped under the 'app' group. This means that whenever Dependabot checks for updates, it will group all updates into a single pull request rather than creating separate pull requests for each update.
 ## [Updated anthropic package version](https://github.com/joshuasundance-swca/ai_changelog/commit/93bc21f70b40db74b02e5a3d922cbed4a54cd720)
 Mon Dec 18 13:12:29 2023 +0000
 - The anthropic package version in the requirements.txt file has been updated. The previous version was 0.7.7 and it has been updated to version 0.7.8. No other changes have been made to the requirements.txt file in this commit.

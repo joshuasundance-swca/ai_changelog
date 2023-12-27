@@ -1,4 +1,8 @@
 # AI CHANGELOG
+## [Configure Dependabot updates](https://github.com/joshuasundance-swca/ai_changelog/commit/ad7e56d40aeea883ab5294cc226600053c024848)
+Tue Dec 26 22:30:06 2023 -0500
+- Added app group to Dependabot config to enable version updates for all packages
+- This will keep dependencies up-to-date and reduce security vulnerabilities
 ## [Upgrade anthropic to 0.7.8](https://github.com/joshuasundance-swca/ai_changelog/commit/93bc21f70b40db74b02e5a3d922cbed4a54cd720)
 Mon Dec 18 13:12:29 2023 +0000
 - Upgrade anthropic dependency to latest version 0.7.8
