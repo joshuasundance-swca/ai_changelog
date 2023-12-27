@@ -1,4 +1,9 @@
 # AI CHANGELOG
+## [Add workflow for bumping version on trigger](https://github.com/joshuasundance-swca/ai_changelog/commit/90fc4dee7df755b56d0e879b50b5c28eb9f0af4b)
+Tue Dec 26 23:16:15 2023 -0500
+- Add GitHub workflow definition file to repository
+- Workflow allows manually triggering patch, minor or major version bump
+- Installs bumpver package and runs it to update version files and push changes
 ## [Upgrade dependencies](https://github.com/joshuasundance-swca/ai_changelog/commit/86f4784f34b9230ccbf95962a060e3897a66c48c)
 Wed Dec 27 03:31:19 2023 +0000
 - Upgrade Anthropic to 0.8.1
