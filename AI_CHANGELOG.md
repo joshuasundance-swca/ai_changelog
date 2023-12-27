@@ -1,4 +1,8 @@
 # AI CHANGELOG
+## [Updated token in Github workflow and Python version](https://github.com/joshuasundance-swca/ai_changelog/commit/0e5a3661bedbcfddcf2e7ed029e92992b6028185)
+Tue Dec 26 23:39:13 2023 -0500
+- This commit updates the token used for Github Actions in the bumpver workflow file from 'WORKFLOW_GIT_ACCESS_TOKEN' to 'PAT'.
+- It also updates the Python version used in the workflow to 3.11.
 ## [Added bot configuration to GitHub Actions workflow](https://github.com/joshuasundance-swca/ai_changelog/commit/baef94d69e76105170ad917ca7084daae4cf7808)
 Tue Dec 26 23:35:58 2023 -0500
 - This commit adds a new step to the GitHub Actions workflow that configures the bot's email and name. This is done to ensure that any commits made by the bot are correctly attributed to it.

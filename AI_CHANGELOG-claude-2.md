@@ -1,4 +1,8 @@
 # AI CHANGELOG
+## [Update GitHub workflow token](https://github.com/joshuasundance-swca/ai_changelog/commit/0e5a3661bedbcfddcf2e7ed029e92992b6028185)
+Tue Dec 26 23:39:13 2023 -0500
+- Replace hardcoded workflow token with PAT secret
+- Fetch full git history to allow version bumping
 ## [Configure git user for bumpver](https://github.com/joshuasundance-swca/ai_changelog/commit/baef94d69e76105170ad917ca7084daae4cf7808)
 Tue Dec 26 23:35:58 2023 -0500
 - Add git config step to set local user email and name for bumpver commit
