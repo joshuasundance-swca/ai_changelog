@@ -1,4 +1,7 @@
 # AI CHANGELOG
+## [Upgrade LangChain dependency](https://github.com/joshuasundance-swca/ai_changelog/commit/eb3c770e02bdc08ff8b00de9af105b54890d96c7)
+Mon Jan 1 08:23:24 2024 +0000
+- Bump LangChain version from 0.0.352 to 0.0.353 in requirements.txt
 ## [Update GitHub workflow token](https://github.com/joshuasundance-swca/ai_changelog/commit/0e5a3661bedbcfddcf2e7ed029e92992b6028185)
 Tue Dec 26 23:39:13 2023 -0500
 - Replace hardcoded workflow token with PAT secret

@@ -1,4 +1,7 @@
 # AI CHANGELOG
+## [Updated langchain version in requirements.txt](https://github.com/joshuasundance-swca/ai_changelog/commit/eb3c770e02bdc08ff8b00de9af105b54890d96c7)
+Mon Jan 1 08:23:24 2024 +0000
+- The langchain package version in requirements.txt has been updated from 0.0.352 to 0.0.353. This update may include bug fixes, feature improvements or new features from the langchain package.
 ## [Updated token in Github workflow and Python version](https://github.com/joshuasundance-swca/ai_changelog/commit/0e5a3661bedbcfddcf2e7ed029e92992b6028185)
 Tue Dec 26 23:39:13 2023 -0500
 - This commit updates the token used for Github Actions in the bumpver workflow file from 'WORKFLOW_GIT_ACCESS_TOKEN' to 'PAT'.
