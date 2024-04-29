@@ -1,5 +1,5 @@
-anthropic==0.25.1
+anthropic==0.25.6
 langchain==0.1.16
 langchainhub==0.1.15
-openai==1.17.1
-pydantic==2.7.0
+openai==1.23.6
+pydantic==2.7.1
