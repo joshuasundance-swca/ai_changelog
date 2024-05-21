@@ -3,3 +3,4 @@ langchain==0.1.16
 langchainhub==0.1.15
 openai==1.17.1
 pydantic==2.7.0
+requests>=2.32.0 # not directly required, pinned by Snyk to avoid a vulnerability
